@@ -34,12 +34,12 @@ drill.define(() => (data) => {
             } = c;
 
             // 将动画查找出来
-            let eleAnimeIn = animateIn && animation.find(e => e.name == animateIn);
-            let eleAnimeOut = animateOut && animation.find(e => e.name == animateOut);
+            let eleAnimeInCSS = animateIn && animation.find(e => e.name == animateIn);
+            let eleAnimeOutCSS = animateOut && animation.find(e => e.name == animateOut);
 
             Object.assign(c, {
-                eleAnimeIn,
-                eleAnimeOut
+                eleAnimeInCSS,
+                eleAnimeOutCSS
             });
 
         });

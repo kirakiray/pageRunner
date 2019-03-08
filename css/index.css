@@ -41,6 +41,8 @@ body {
   width: 100%;
   height: 100%;
   pointer-events: none;
+  -webkit-transition: opacity ease .3s;
+  transition: opacity ease .3s;
 }
 .main .p_ele_outer[hor="start"] {
   -webkit-box-pack: start;
@@ -70,5 +72,75 @@ body {
   position: relative;
   pointer-events: auto;
   outline: #a0b dashed 1px;
+}
+.main .p_pic > img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+.loading_layer {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+          align-items: center;
+  pointer-events: none;
+}
+.loading_layer > img,
+.loading_layer > svg {
+  display: block;
+  -webkit-animation: loading_anime linear 1s infinite;
+          animation: loading_anime linear 1s infinite;
+  -webkit-filter: drop-shadow(0 0 1px rgba(0, 0, 0, 0.2));
+          filter: drop-shadow(0 0 1px rgba(0, 0, 0, 0.2));
+}
+@-webkit-keyframes loading_anime {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+@keyframes loading_anime {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+@-webkit-keyframes eleFadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes eleFadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+.eleFadeIn {
+  -webkit-animation: eleFadeIn ease .3s;
+          animation: eleFadeIn ease .3s;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
 }
 /*# sourceMappingURL=./index.css.map */

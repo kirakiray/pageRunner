@@ -41,6 +41,7 @@ body {
         width: 100%;
         height: 100%;
         pointer-events: none;
+        transition: opacity ease .3s;
         &[hor="start"] {
             justify-content: flex-start;
         }
@@ -65,4 +66,54 @@ body {
         pointer-events: auto;
         outline: #a0b dashed 1px;
     }
+    .p_pic {
+        >img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    }
+}
+
+.loading_layer {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    pointer-events: none;
+    >img,
+    >svg {
+        display: block;
+        animation: loading_anime linear 1s infinite;
+        filter: drop-shadow(0 0 1px rgba(0, 0, 0, .2))
+    }
+}
+
+@keyframes loading_anime {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes eleFadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+// 淡入
+.eleFadeIn {
+    animation: eleFadeIn ease .3s;
+    animation-fill-mode: forwards;
 }
