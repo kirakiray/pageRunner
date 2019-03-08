@@ -1,0 +1,74 @@
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+.main,
+.page {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+.main {
+  overflow: hidden;
+  -webkit-overflow-scrolling: touch;
+}
+.main .page {
+  display: none;
+  z-index: 1;
+  -webkit-transition: all ease .5s;
+  transition: all ease .5s;
+}
+.main .page[active="1"] {
+  display: block;
+  z-index: 3;
+}
+.main .page[active="2"],
+.main .page[active="3"] {
+  display: block;
+  z-index: 2;
+}
+.main .p_ele_outer {
+  display: -webkit-box;
+  display: flex;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+.main .p_ele_outer[hor="start"] {
+  -webkit-box-pack: start;
+          justify-content: flex-start;
+}
+.main .p_ele_outer[hor="center"] {
+  -webkit-box-pack: center;
+          justify-content: center;
+}
+.main .p_ele_outer[hor="end"] {
+  -webkit-box-pack: end;
+          justify-content: flex-end;
+}
+.main .p_ele_outer[ver="start"] {
+  -webkit-box-align: start;
+          align-items: flex-start;
+}
+.main .p_ele_outer[ver="center"] {
+  -webkit-box-align: center;
+          align-items: center;
+}
+.main .p_ele_outer[ver="end"] {
+  -webkit-box-align: end;
+          align-items: flex-end;
+}
+.main .p_ele {
+  position: relative;
+  pointer-events: auto;
+  outline: #a0b dashed 1px;
+}
+/*# sourceMappingURL=./index.css.map */

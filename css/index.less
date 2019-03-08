@@ -1,0 +1,68 @@
+// autoprefixer: > 5%; last 2 Chrome versions; not ie 6-9, sourceMap: true
+html,
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.main,
+.page {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.main {
+    overflow: hidden;
+    -webkit-overflow-scrolling: touch;
+    .page {
+        display: none;
+        z-index: 1;
+        transition: all ease .5s;
+        &[active="1"] {
+            display: block;
+            z-index: 3;
+        }
+        &[active="2"],
+        &[active="3"] {
+            display: block;
+            z-index: 2;
+        }
+    }
+    .p_ele_outer {
+        display: flex;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        &[hor="start"] {
+            justify-content: flex-start;
+        }
+        &[hor="center"] {
+            justify-content: center;
+        }
+        &[hor="end"] {
+            justify-content: flex-end;
+        }
+        &[ver="start"] {
+            align-items: flex-start;
+        }
+        &[ver="center"] {
+            align-items: center;
+        }
+        &[ver="end"] {
+            align-items: flex-end;
+        }
+    }
+    .p_ele {
+        position: relative;
+        pointer-events: auto;
+        outline: #a0b dashed 1px;
+    }
+}
