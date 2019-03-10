@@ -22,7 +22,7 @@ drill.init(async (load, d) => {
         let cssObj = {};
         let bgimg = data["background-image"];
         if (bgimg) {
-            cssObj["background-image"] = `url(/${bgimg})`;
+            cssObj["background-image"] = `url(${bgimg})`;
         }
         ["background-color", "background-repeat", "background-size", "background-position"].forEach(k => {
             data[k] && (cssObj[k] = data[k]);
@@ -137,7 +137,7 @@ drill.init(async (load, d) => {
                 if (e["background-image"]) {
                     // let picUrl = transImgUrl(e["background-image"]);
                     // imgarr.push(picUrl);
-                    imgarr.push(e.picUrl);
+                    imgarr.push(e["background-image"]);
                 }
             });
 
