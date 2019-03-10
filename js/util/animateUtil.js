@@ -27,26 +27,58 @@ drill.define(async () => {
             });
             return str;
         },
+        animationDataToStr(animation) {
+            let str = "";
+            Object.keys(animation).forEach((k) => {
+                if (/\D/.test(k)) {
+                    return;
+                }
+                let val = animation[k];
+                let s = animationUtil.frameToStr(val);
+                str += `${k}%{${s}}\n`;
+            });
+            return str;
+        },
         // 获取animationIn的动画样式字符
         getAnimateIn(animateData) {
             // if (animateData.css) {
             //     debugger
             // }
-            let frameStr = animationUtil.frameToStr(animateData.frame);
-            let str = `@keyframes ${animateData.name}{
-                0%{${frameStr}}
-                100%{transform:translate3d(0,0,0); opacity:1;}
+            let frameStr;
+            let str;
+            if (animateData.frame) {
+                frameStr = animationUtil.frameToStr(animateData.frame);
+                str = `@keyframes ${animateData.name}{
+                    0%{${frameStr}}
+                    100%{transform:translate3d(0,0,0); opacity:1;}
+                }
+                `;
+            } else {
+                frameStr = animationUtil.animationDataToStr(animateData.animation);
+                str = `@keyframes ${animateData.name}{
+                    ${frameStr}
+                }
+                `;
             }
-            `;
             return str;
         },
         getAnimateOut(animateData) {
-            let frameStr = animationUtil.frameToStr(animateData.frame);
-            let str = `@keyframes ${animateData.name}{
-                0%{transform:translate3d(0,0,0); opacity:1;}
-                100%{${frameStr}}
+            let frameStr;
+            let str;
+            if (animateData.frame) {
+                frameStr = animationUtil.frameToStr(animateData.frame);
+                str = `@keyframes ${animateData.name}{
+                    0%{transform:translate3d(0,0,0); opacity:1;}
+                    100%{${frameStr}}
+                }
+                `;
+            } else {
+                frameStr = animationUtil.animationDataToStr(animateData.animation);
+                str = `@keyframes ${animateData.name}{
+                    ${frameStr}
+                }
+                `;
             }
-            `;
             return str;
         },
         // 获取整个animation转换的style字符串

@@ -38,16 +38,16 @@ drill.define(function () {
 
                 // 将动画查找出来
 
-                var eleAnimeIn = animateIn && animation.find(function (e) {
+                var eleAnimeInCSS = animateIn && animation.find(function (e) {
                     return e.name == animateIn;
                 });
-                var eleAnimeOut = animateOut && animation.find(function (e) {
+                var eleAnimeOutCSS = animateOut && animation.find(function (e) {
                     return e.name == animateOut;
                 });
 
                 Object.assign(c, {
-                    eleAnimeIn: eleAnimeIn,
-                    eleAnimeOut: eleAnimeOut
+                    eleAnimeInCSS: eleAnimeInCSS,
+                    eleAnimeOutCSS: eleAnimeOutCSS
                 });
             });
         });
