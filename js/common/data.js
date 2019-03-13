@@ -8,7 +8,10 @@ drill.define(() => {
     Object.defineProperties(data, {
         currentPageId: {
             get() {
-                return this.currentPage.index();
+                let {
+                    currentPage
+                } = this;
+                return currentPage.length ? currentPage.index() : undefined;
             }
         },
         currentPage: {

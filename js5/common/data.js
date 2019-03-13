@@ -10,7 +10,9 @@ drill.define(function () {
     Object.defineProperties(data, {
         currentPageId: {
             get: function get() {
-                return this.currentPage.index();
+                var currentPage = this.currentPage;
+
+                return currentPage.length ? currentPage.index() : undefined;
             }
         },
         currentPage: {

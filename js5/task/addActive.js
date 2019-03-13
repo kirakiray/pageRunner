@@ -4,23 +4,26 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
 drill.init(function () {
     var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(load, data) {
-        var activeData;
+        var urlData;
         return regeneratorRuntime.wrap(function _callee$(_context) {
             while (1) {
                 switch (_context.prev = _context.next) {
                     case 0:
-                        // 判断是否存在active，不存在就添加
-                        activeData = Array.from(data.mainPage).some(function (e) {
-                            return e.active;
-                        });
+                        _context.next = 2;
+                        return load("common/urlData");
 
-                        // 不存在就将第一个添加active
+                    case 2:
+                        urlData = _context.sent;
 
-                        if (!activeData && data.mainPage[0]) {
+
+                        // 判断是否有指定active page Id
+                        if ("active" in urlData && data.mainPage[urlData.active]) {
+                            data.mainPage[urlData.active].active = 1;
+                        } else {
                             data.mainPage[0].active = 1;
                         }
 
-                    case 2:
+                    case 4:
                     case "end":
                         return _context.stop();
                 }
