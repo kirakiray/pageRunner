@@ -80,6 +80,9 @@ body {
   height: 100%;
   border: none;
 }
+.main .p_text {
+  word-break: break-all;
+}
 .loading_layer {
   position: absolute;
   left: 0;
