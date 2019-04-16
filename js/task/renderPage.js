@@ -35,7 +35,9 @@ drill.init(async (load, d) => {
         Array.from(p).forEach(e => {
             let ele = $(`
             <div class="p_ele_outer" style="opacity:0;" ver="${e.ver}" hor="${e.hor}">
-                <div class="p_ele"></div>
+                <div class="p_ele">
+                    <div class="p_ele_inner"></div>
+                </div>
             </div>`);
 
             // 让元素进场不显得那么突兀
@@ -48,6 +50,7 @@ drill.init(async (load, d) => {
 
             // 主体元素
             let tarEle = ele.find(".p_ele");
+            let tarEleInner = tarEle.find('.p_ele_inner');
 
             // 设置元素宽高
             tarEle.css("width", e.w);
@@ -59,8 +62,8 @@ drill.init(async (load, d) => {
             switch (e.tag) {
                 case "text":
                     // 添加class
-                    tarEle.addClass('p_text');
-                    tarEle.text(e.intext);
+                    tarEleInner.addClass('p_text');
+                    tarEleInner.text(e.intext);
 
                     // 设置字体大小颜色什么的
                     ["fontWeight", "fontStyle", "color", "lineHeight"].forEach(k => {
@@ -69,18 +72,18 @@ drill.init(async (load, d) => {
                     break;
                 case "pic":
                     // 添加class
-                    tarEle.addClass('p_pic');
+                    tarEleInner.addClass('p_pic');
 
                     // let picUrl = transImgUrl(e.picUrl);
 
                     // 设置图片属性
                     // tarEle.append(`<img src="${picUrl}" />`);
-                    tarEle.append(`<img src="${e.picUrl}" />`);
+                    tarEleInner.append(`<img src="${e.picUrl}" />`);
                     break;
             }
 
             // 背景元素等属性修正
-            setEleCSS(tarEle, e);
+            setEleCSS(tarEleInner, e);
         });
     }
 

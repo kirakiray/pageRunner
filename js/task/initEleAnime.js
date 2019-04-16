@@ -22,7 +22,7 @@ drill.define(async (load) => {
             // 下一页的动画元素都先隐藏
             let childs = $page.children();
             childs.each((i, e) => {
-                let ele = $(e).find(".p_ele");
+                let ele = $(e).find(".p_ele_inner");
 
                 if (!ele.length) {
                     return;
@@ -60,7 +60,7 @@ drill.define(async (load) => {
 
             let childs = $page.children();
             childs.each((i, e) => {
-                let ele = $(e).find(".p_ele");
+                let ele = $(e).find(".p_ele_inner");
 
                 if (!ele.length) {
                     return;
