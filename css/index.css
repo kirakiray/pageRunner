@@ -34,8 +34,6 @@ body {
   z-index: 2;
 }
 .main .p_ele_outer {
-  display: -webkit-box;
-  display: flex;
   position: absolute;
   left: 0;
   top: 0;
@@ -45,41 +43,10 @@ body {
   -webkit-transition: opacity ease .3s;
   transition: opacity ease .3s;
 }
-.main .p_ele_outer[hor="start"] {
-  -webkit-box-pack: start;
-          justify-content: flex-start;
-}
-.main .p_ele_outer[hor="center"] {
-  -webkit-box-pack: center;
-          justify-content: center;
-}
-.main .p_ele_outer[hor="end"] {
-  -webkit-box-pack: end;
-          justify-content: flex-end;
-}
-.main .p_ele_outer[ver="start"] {
-  -webkit-box-align: start;
-          align-items: flex-start;
-}
-.main .p_ele_outer[ver="center"] {
-  -webkit-box-align: center;
-          align-items: center;
-}
-.main .p_ele_outer[ver="end"] {
-  -webkit-box-align: end;
-          align-items: flex-end;
-}
 .main .p_ele {
-  position: relative;
+  position: absolute;
   pointer-events: auto;
   outline: #a0b dashed 1px;
-}
-.main .p_ele > .p_ele_inner {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
 }
 .main .p_pic > img {
   display: block;

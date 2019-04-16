@@ -7,16 +7,6 @@ drill.init(async (load, d) => {
 
     let [getTransformStr, viewUtil, cacheUtil, commonData] = await load("util/getTransformStr", "util/viewUtil", "util/cacheUtil", "common/data");
 
-    // 修正 $/Url
-    // const transImgUrl = (picUrl) => {
-    //     if (/\$\//.test(picUrl)) {
-    //         picUrl = "/" + picUrl;
-    //     } else {
-    //         debugger
-    //     }
-    //     return picUrl;
-    // }
-
     // 设置通用css
     const setEleCSS = (tarEle, data) => {
         let cssObj = {};
@@ -35,9 +25,7 @@ drill.init(async (load, d) => {
         Array.from(p).forEach(e => {
             let ele = $(`
             <div class="p_ele_outer" style="opacity:0;" ver="${e.ver}" hor="${e.hor}">
-                <div class="p_ele">
-                    <div class="p_ele_inner"></div>
-                </div>
+                <div class="p_ele"></div>
             </div>`);
 
             // 让元素进场不显得那么突兀
@@ -50,7 +38,6 @@ drill.init(async (load, d) => {
 
             // 主体元素
             let tarEle = ele.find(".p_ele");
-            let tarEleInner = tarEle.find('.p_ele_inner');
 
             // 设置元素宽高
             tarEle.css("width", e.w);
@@ -62,8 +49,8 @@ drill.init(async (load, d) => {
             switch (e.tag) {
                 case "text":
                     // 添加class
-                    tarEleInner.addClass('p_text');
-                    tarEleInner.text(e.intext);
+                    tarEle.addClass('p_text');
+                    tarEle.text(e.intext);
 
                     // 设置字体大小颜色什么的
                     ["fontWeight", "fontStyle", "color", "lineHeight"].forEach(k => {
@@ -72,18 +59,15 @@ drill.init(async (load, d) => {
                     break;
                 case "pic":
                     // 添加class
-                    tarEleInner.addClass('p_pic');
-
-                    // let picUrl = transImgUrl(e.picUrl);
+                    tarEle.addClass('p_pic');
 
                     // 设置图片属性
-                    // tarEle.append(`<img src="${picUrl}" />`);
-                    tarEleInner.append(`<img src="${e.picUrl}" />`);
+                    tarEle.append(`<img src="${e.picUrl}" />`);
                     break;
             }
 
             // 背景元素等属性修正
-            setEleCSS(tarEleInner, e);
+            setEleCSS(tarEle, e);
         });
     }
 
@@ -160,18 +144,8 @@ drill.init(async (load, d) => {
             // 设置加载完成
             p.loaded = 1;
 
-            // 刷新大小
+            // 初次刷新大小
             viewUtil.refreshView(page[0]);
-
-            // 判断是否当前页
-            // if (commonData.currentPageId == page.index()) {
-            //     await load("task/initEleAnime");
-            //     p.runPageAnime();
-            // } else {
-            //     // 去除loading，加载动画
-            //     await load("task/initEleAnime");
-            //     p.runPageAnime();
-            // }
 
             // 去除loading，加载动画
             await load("task/initEleAnime");

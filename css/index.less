@@ -39,7 +39,7 @@ body {
     }
 
     .p_ele_outer {
-        display: flex;
+        // display: flex;
         position: absolute;
         left: 0;
         top: 0;
@@ -48,43 +48,35 @@ body {
         pointer-events: none;
         transition: opacity ease .3s;
 
-        &[hor="start"] {
-            justify-content: flex-start;
-        }
+        // &[hor="start"] {
+        //     justify-content: flex-start;
+        // }
 
-        &[hor="center"] {
-            justify-content: center;
-        }
+        // &[hor="center"] {
+        //     justify-content: center;
+        // }
 
-        &[hor="end"] {
-            justify-content: flex-end;
-        }
+        // &[hor="end"] {
+        //     justify-content: flex-end;
+        // }
 
-        &[ver="start"] {
-            align-items: flex-start;
-        }
+        // &[ver="start"] {
+        //     align-items: flex-start;
+        // }
 
-        &[ver="center"] {
-            align-items: center;
-        }
+        // &[ver="center"] {
+        //     align-items: center;
+        // }
 
-        &[ver="end"] {
-            align-items: flex-end;
-        }
+        // &[ver="end"] {
+        //     align-items: flex-end;
+        // }
     }
 
     .p_ele {
-        position: relative;
+        position: absolute;
         pointer-events: auto;
         outline: #a0b dashed 1px;
-
-        >.p_ele_inner {
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-        }
     }
 
     .p_pic {
