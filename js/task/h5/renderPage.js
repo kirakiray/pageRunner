@@ -115,15 +115,11 @@ drill.init(async (load, d) => {
             let imgarr = [];
             Array.from(p).forEach(e => {
                 if (e.tag == "pic") {
-                    // let picUrl = transImgUrl(e.picUrl);
-                    // imgarr.push(picUrl);
                     imgarr.push(e.picUrl);
                 }
 
                 // 查看是否有bgimg
                 if (e["background-image"]) {
-                    // let picUrl = transImgUrl(e["background-image"]);
-                    // imgarr.push(picUrl);
                     imgarr.push(e["background-image"]);
                 }
             });
@@ -148,7 +144,7 @@ drill.init(async (load, d) => {
             viewUtil.refreshView(page[0]);
 
             // 去除loading，加载动画
-            await load("task/initEleAnime");
+            await load("task/h5/initEleAnime");
             p.runPageAnime();
 
             // 触发loadend事件
@@ -184,7 +180,7 @@ drill.init(async (load, d) => {
             page.css("transform", "");
 
             // 加载激活的页面
-            load("task/initEleAnime").then(e => {
+            load("task/h5/initEleAnime").then(e => {
                 p.startLoad();
             })
         } else if (pageId < activeId) {

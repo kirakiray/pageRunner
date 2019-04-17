@@ -22,7 +22,7 @@
     let mainEle = $(".main");
 
     // 渲染数据
-    await load('task/renderPage').post({
+    await load('task/h5/renderPage').post({
         target: mainEle,
         data
     });
@@ -31,12 +31,12 @@
     $('.mainLoading').remove();
 
     // 初始化页面切换效果控件
-    await load("task/initPageSwiper").post({
+    await load("task/h5/initPageSwiper").post({
         target: mainEle
     });
 
     // 初始化页面元素的的动画交互
-    await load("task/initEleAnime");
+    await load("task/h5/initEleAnime");
 
     commonData.on("changePageStart", (e, data) => {
         console.log("changePageStart => ", data);
