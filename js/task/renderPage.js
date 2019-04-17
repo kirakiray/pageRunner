@@ -124,9 +124,6 @@ drill.init(async (load, d) => {
             // 填充子元素
             addEles(page, p);
 
-            // 清空状态
-            p.clearPageAnime();
-
             // 去掉loading_layer
             page.find(".loading_layer").remove();
 
@@ -143,9 +140,6 @@ drill.init(async (load, d) => {
             });
 
             p.checkPrevAndNext();
-
-            // 等待300毫秒，page上的loading消失
-            await new Promise(res => setTimeout(() => res(), 300));
 
             return 1;
         }

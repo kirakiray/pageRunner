@@ -43,26 +43,13 @@
 
     // 根据type进行初始化类型
     switch (data.type) {
+        case "h5":
         default:
             // 默认走h5类型
             // 初始化节点信息
-            await load("task/h5/initDOM").post({
+            await load("task/h5/initH5").post({
                 initActiveId
             });
-
-            // 初始化页面切换效果控件
-            await load("task/h5/initPageSwiper").post({
-                target: mainEle
-            });
-
-            // 初始化页面元素的的动画交互
-            await load("task/h5/initEleAnime");
-
-            // 根据initActiveId点火
-            let targetPageData = $(".p_main > .page").eq(initActiveId).prop("pageData");
-            await targetPageData.startLoad();
-
-            targetPageData.runPageAnime();
     }
 
     commonData.on("changePageStart", (e, data) => {

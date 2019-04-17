@@ -1,9 +1,5 @@
 drill.init(async (load, d) => {
-    let {
-        target
-    } = d;
-
-    const pageUtil = await load("util/pageUtil");
+    const pageUtil = await load("./h5Util");
 
     let mainEle = $(".p_main");
 

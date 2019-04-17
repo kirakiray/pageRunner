@@ -7,6 +7,7 @@ drill.define(() => {
 
     let mainEle = $(".p_main");
 
+    // 刷新视图的宽高定位
     const refreshView = (ele) => {
         let {
             pageData,
