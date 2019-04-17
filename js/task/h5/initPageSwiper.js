@@ -3,9 +3,9 @@ drill.init(async (load, d) => {
         target
     } = d;
 
-    const pageUtil = await load("util/page");
+    const pageUtil = await load("util/pageUtil");
 
-    let mainEle = $(".main");
+    let mainEle = $(".p_main");
 
     // 监听滚动
     mainEle.on("mousewheel", e => {
@@ -21,9 +21,9 @@ drill.init(async (load, d) => {
             wheelDeltaX
         } = originalEvent;
 
-        if (wheelDeltaY < -200) {
+        if (wheelDeltaY < -100) {
             pageUtil.toNextPage();
-        } else if (wheelDeltaY > 200) {
+        } else if (wheelDeltaY > 100) {
             pageUtil.toPrevPage();
         }
     });

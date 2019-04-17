@@ -5,7 +5,7 @@ drill.init(async (load, d) => {
         data
     } = d;
 
-    let [dataUtil, viewUtil, cacheUtil, commonData] = await load("util/dataUtil", "util/viewUtil", "util/cacheUtil", "common/data");
+    let [viewUtil, cacheUtil, commonData] = await load("util/viewUtil", "util/cacheUtil", "common/data");
 
     // 设置通用css
     const setEleCSS = (tarEle, data) => {
@@ -71,15 +71,6 @@ drill.init(async (load, d) => {
         });
     }
 
-    // 获取激活的页面id
-    let activeId = "";
-    Array.from(data.mainPage).some((e, i) => {
-        if (e.active) {
-            activeId = i;
-            return true;
-        }
-    });
-
     // 填充html
     Array.from(data.mainPage).forEach((p, pageId) => {
         let page = $(`
@@ -102,14 +93,16 @@ drill.init(async (load, d) => {
 
         // 添加page数据
         page.prop("pageData", p);
-        page.attr("active", p.active || 0);
 
         // 添加页面加载器
         p.startLoad = async () => {
             // 判断已经加载完成
             if (p.loaded) {
-                return 1;
+                return p.loaded;
             }
+
+            // 设置加载中
+            p.loaded = 2;
 
             // 总结出所有图片元素
             let imgarr = [];
@@ -143,10 +136,6 @@ drill.init(async (load, d) => {
             // 初次刷新大小
             viewUtil.refreshView(page[0]);
 
-            // 去除loading，加载动画
-            await load("task/h5/initEleAnime");
-            p.runPageAnime();
-
             // 触发loadend事件
             commonData.trigger("pageLoaded", {
                 page,
@@ -154,6 +143,11 @@ drill.init(async (load, d) => {
             });
 
             p.checkPrevAndNext();
+
+            // 等待300毫秒，page上的loading消失
+            await new Promise(res => setTimeout(() => res(), 300));
+
+            return 1;
         }
 
         // 查看上下页面并执行缓存的方法
@@ -173,25 +167,6 @@ drill.init(async (load, d) => {
 
         // 初始状态没加载完成
         p.loaded = 0;
-
-        // 是否激活页面
-        if (pageId == activeId) {
-            // 清空transform
-            page.css("transform", "");
-
-            // 加载激活的页面
-            load("task/h5/initEleAnime").then(e => {
-                p.startLoad();
-            })
-        } else if (pageId < activeId) {
-            page.css({
-                "transform": dataUtil.getTransformStr(p.pos1.transform)
-            });
-        } else {
-            page.css({
-                "transform": dataUtil.getTransformStr(p.pos2.transform)
-            });
-        }
 
         // 添加page
         target.append(page);

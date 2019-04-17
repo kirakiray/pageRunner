@@ -1,27 +1,26 @@
-drill.define(() => {
-    let mainEle = $(".main");
+drill.define(async (load) => {
+    let mainEle = $(".p_main");
 
     // 主体数据
-    let data = $({});
+    let commonData = $({});
 
     // 定义常规数据
-    Object.defineProperties(data, {
+    Object.defineProperties(commonData, {
+        currentPage: {
+            get() {
+                return mainEle.find(`[active="1"]`);
+            }
+        },
         currentPageId: {
             get() {
                 let {
                     currentPage
                 } = this;
-                return currentPage.length ? currentPage.index() : undefined;
-            }
-        },
-        currentPage: {
-            get() {
-                return mainEle.find(`[active="1"]`);
+
+                return currentPage.length ? currentPage.index() : 0;
             }
         }
     });
 
-    window.commonData = data;
-
-    return data;
+    return commonData;
 });

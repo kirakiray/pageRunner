@@ -8,8 +8,8 @@ body {
     font-family: "FZLanTingHei-R-GBK", STHeiti STXihei, Microsoft Yahei, Arial;
 }
 
-.main,
-.page {
+.p_main,
+.p_main>.page {
     position: absolute;
     left: 0;
     top: 0;
@@ -17,11 +17,11 @@ body {
     height: 100%;
 }
 
-.main {
+.p_main {
     overflow: hidden;
     -webkit-overflow-scrolling: touch;
 
-    .page {
+    >.page {
         display: none;
         z-index: 1;
         transition: all ease .5s;

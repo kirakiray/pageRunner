@@ -5,7 +5,7 @@ drill.define(() => {
         return arr ? arr[1] : "";
     };
 
-    let mainEle = $(".main");
+    let mainEle = $(".p_main");
 
     const refreshView = (ele) => {
         let {

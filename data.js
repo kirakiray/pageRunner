@@ -1,5 +1,5 @@
 define({
-    type: "scroll",
+    // type: "scroll",
     animation: [{
         type: "animeIn",
         name: "animate_top_fade_move_in",
@@ -40,7 +40,6 @@ define({
     mainPage: {
         0: {
             tag: "page",
-            // active: 1,
             "pageIn": "animate_top_fade_move_in",
             "pageOut": "animate_bottom_fade_move_out",
             "background-color": "#aaa",
@@ -94,6 +93,7 @@ define({
             "pageIn": "animate_top_fade_move_in",
             "pageOut": "animate_bottom_fade_move_out",
             "background-color": "#0aa",
+            // active: 1,
             0: {
                 tag: "text",
                 intext: "我是文本2-1",

@@ -10,7 +10,7 @@ drill.define(async (load) => {
     `);
 
     // 给pageData添加清空和进行动画的函数
-    $(".main").children().each((i, e) => {
+    $(".p_main").children().each((i, e) => {
         let {
             pageData
         } = e;

@@ -15,11 +15,11 @@ drill.define(async (load) => {
             }
 
             // 获取激活中的页面
-            let activePage = $('.main .page[active="1"]');
+            let activePage = $('.p_main .page[active="1"]');
             let activeId = activePage.index();
 
             // 获取下一页
-            let nextPage = $('.main .page').eq(pageId);
+            let nextPage = $('.p_main .page').eq(pageId);
 
             if (!nextPage.length || activeId == pageId) {
                 return;
@@ -66,14 +66,14 @@ drill.define(async (load) => {
         // 下一页
         toNextPage() {
             // 获取激活中的页面
-            let activePage = $('.main .page[active="1"]');
+            let activePage = $('.p_main .page[active="1"]');
 
             this.toPage(activePage.index() + 1);
         },
         // 上一页
         toPrevPage() {
             // 获取激活中的页面
-            let activePage = $('.main .page[active="1"]');
+            let activePage = $('.p_main .page[active="1"]');
 
             let prevIndex = activePage.index() - 1;
 
