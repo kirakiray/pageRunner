@@ -1,7 +1,7 @@
 drill.init(async (load, {
     initActiveId
 }) => {
-    const dataUtil = await load("util/dataUtil");
+    const [commonData, dataUtil, pageUtil] = await load("common/data", "util/dataUtil", "util/pageUtil");
 
     // 添加相应的active
     $(".p_main > .page").each((pageId, e) => {
@@ -34,20 +34,40 @@ drill.init(async (load, {
     await load("task/h5/initPageSwiper");
 
     // 初始化页面元素的的动画交互
-    await load("task/h5/initEleAnime");
+    // 添加初始动画样式
+    pageUtil.initAnimeStyle();
+
+    commonData.on("changePageStart", (e, data) => {
+        let {
+            activePage,
+            nextPage
+        } = data;
+
+        pageUtil.clearPageAnime(nextPage);
+    });
+
+    commonData.on("changePageEnd", (e, data) => {
+        let {
+            activePage,
+            oldPage
+        } = data;
+
+        pageUtil.runPageAnime(activePage);
+    });
 
     // 获取初始页
-    let targetPageData = $(".p_main > .page").eq(initActiveId).prop("pageData");
+    let tarPage = $(".p_main > .page").eq(initActiveId);
+    let targetPageData = tarPage.prop("pageData");
 
     // 根据initActiveId点火
     await targetPageData.startLoad();
 
     // 清空状态
-    targetPageData.clearPageAnime();
+    pageUtil.clearPageAnime(tarPage);
 
-    // 等待300毫秒，page上的loading消失
+    // 等待200毫秒，page上的loading消失
     await new Promise(res => setTimeout(() => res(), 200));
 
     // 加载完成后进行初始动画
-    targetPageData.runPageAnime();
+    pageUtil.runPageAnime(tarPage);
 });
