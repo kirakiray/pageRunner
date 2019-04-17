@@ -42,6 +42,7 @@ drill.define(function () {
                                 var childs = $page.children();
                                 childs.each(function (i, e) {
                                     var ele = $(e).find(".p_ele");
+                                    // let ele = $(e).find(".p_ele_inner");
 
                                     if (!ele.length) {
                                         return;
@@ -78,6 +79,7 @@ drill.define(function () {
 
                                 var childs = $page.children();
                                 childs.each(function (i, e) {
+                                    // let ele = $(e).find(".p_ele_inner");
                                     var ele = $(e).find(".p_ele");
 
                                     if (!ele.length) {

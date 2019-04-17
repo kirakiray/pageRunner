@@ -25,16 +25,6 @@ drill.init(function () {
                         cacheUtil = _ref3[2];
                         commonData = _ref3[3];
 
-                        // 修正 $/Url
-                        // const transImgUrl = (picUrl) => {
-                        //     if (/\$\//.test(picUrl)) {
-                        //         picUrl = "/" + picUrl;
-                        //     } else {
-                        //         debugger
-                        //     }
-                        //     return picUrl;
-                        // }
-
                         // 设置通用css
                         setEleCSS = function setEleCSS(tarEle, data) {
                             var cssObj = {};
@@ -88,10 +78,7 @@ drill.init(function () {
                                         // 添加class
                                         tarEle.addClass('p_pic');
 
-                                        // let picUrl = transImgUrl(e.picUrl);
-
                                         // 设置图片属性
-                                        // tarEle.append(`<img src="${picUrl}" />`);
                                         tarEle.append("<img src=\"" + e.picUrl + "\" />");
                                         break;
                                 }
@@ -177,18 +164,8 @@ drill.init(function () {
                                                 // 设置加载完成
                                                 p.loaded = 1;
 
-                                                // 刷新大小
+                                                // 初次刷新大小
                                                 viewUtil.refreshView(page[0]);
-
-                                                // 判断是否当前页
-                                                // if (commonData.currentPageId == page.index()) {
-                                                //     await load("task/initEleAnime");
-                                                //     p.runPageAnime();
-                                                // } else {
-                                                //     // 去除loading，加载动画
-                                                //     await load("task/initEleAnime");
-                                                //     p.runPageAnime();
-                                                // }
 
                                                 // 去除loading，加载动画
                                                 _context.next = 13;

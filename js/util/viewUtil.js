@@ -5,6 +5,8 @@ drill.define(() => {
         return arr ? arr[1] : "";
     };
 
+    let mainEle = $(".main");
+
     const refreshView = (ele) => {
         let {
             pageData,
@@ -22,8 +24,8 @@ drill.define(() => {
             let $pele = $ele.find(".p_ele");
 
             // 获取当前页的宽高
-            let p_width = $ele.width();
-            let p_height = $ele.height();
+            let p_width = mainEle.width();
+            let p_height = mainEle.height();
 
             // 计算并重新设置盒模型的值
             let {
@@ -110,13 +112,13 @@ drill.define(() => {
             let unit_y = getUnit(y);
             switch (unit_y) {
                 case "px":
-                    bottom -= parseFloat(y);
+                    bottom += parseFloat(y);
                     break;
                 case "%":
-                    bottom -= parseFloat(y) / 100 * p_width;
+                    bottom += parseFloat(y) / 100 * p_height;
                     break;
                 case "bw":
-                    bottom -= parseFloat(y) * bwPx;
+                    bottom += parseFloat(y) * bwPx;
                     break;
             }
 
