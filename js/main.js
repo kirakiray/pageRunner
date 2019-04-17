@@ -30,7 +30,10 @@
     });
 
     // 去除主的loading
-    $('.mainLoading').remove();
+    $('.mainLoading').addClass("eleFadeOut");
+    setTimeout(() => {
+        $('.mainLoading').remove();
+    }, 300);
 
     // 获取激活的页面id
     let initActiveId = 0;

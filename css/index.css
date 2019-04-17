@@ -56,6 +56,54 @@ body {
 .p_main .p_text {
   word-break: break-all;
 }
+.mainLoading {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  -webkit-overflow-scrolling: touch;
+  z-index: 20;
+}
+.mainLoading > .page {
+  display: none;
+  z-index: 1;
+  -webkit-transition: all ease .5s;
+  transition: all ease .5s;
+}
+.mainLoading > .page[active="1"] {
+  display: block;
+  z-index: 3;
+}
+.mainLoading > .page[active="2"],
+.mainLoading > .page[active="3"] {
+  display: block;
+  z-index: 2;
+}
+.mainLoading .p_ele_outer {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  -webkit-transition: opacity ease .3s;
+  transition: opacity ease .3s;
+}
+.mainLoading .p_ele {
+  position: absolute;
+  pointer-events: auto;
+}
+.mainLoading .p_pic > img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+.mainLoading .p_text {
+  word-break: break-all;
+}
 .loading_layer {
   position: absolute;
   left: 0;
@@ -114,9 +162,31 @@ body {
     opacity: 1;
   }
 }
+@-webkit-keyframes eleFadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes eleFadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
 .eleFadeIn {
   -webkit-animation: eleFadeIn ease .3s;
           animation: eleFadeIn ease .3s;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+}
+.eleFadeOut {
+  -webkit-animation: eleFadeOut ease .3s;
+          animation: eleFadeOut ease .3s;
   -webkit-animation-fill-mode: forwards;
           animation-fill-mode: forwards;
 }

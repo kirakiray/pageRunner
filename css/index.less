@@ -39,7 +39,6 @@ body {
     }
 
     .p_ele_outer {
-        // display: flex;
         position: absolute;
         left: 0;
         top: 0;
@@ -67,6 +66,11 @@ body {
     .p_text {
         word-break: break-all;
     }
+}
+
+.mainLoading {
+    .p_main();
+    z-index: 20;
 }
 
 .loading_layer {
@@ -108,8 +112,23 @@ body {
     }
 }
 
+@keyframes eleFadeOut {
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
 // 淡入
 .eleFadeIn {
     animation: eleFadeIn ease .3s;
+    animation-fill-mode: forwards;
+}
+
+.eleFadeOut {
+    animation: eleFadeOut ease .3s;
     animation-fill-mode: forwards;
 }
