@@ -46,7 +46,6 @@ body {
 .main .p_ele {
   position: absolute;
   pointer-events: auto;
-  outline: #a0b dashed 1px;
 }
 .main .p_pic > img {
   display: block;

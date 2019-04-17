@@ -1,5 +1,5 @@
 drill.define(async (load) => {
-    let [getTransformStr, commonData] = await load("util/getTransformStr", "common/data");
+    let [dataUtil, commonData] = await load("util/dataUtil", "common/data");
 
     let isRunAnime = 0;
 
@@ -31,9 +31,9 @@ drill.define(async (load) => {
 
             let transStr;
             if (activeId > pageId) {
-                transStr = getTransformStr(activePage.prop("pageData").pos2.transform);
+                transStr = dataUtil.getTransformStr(activePage.prop("pageData").pos2.transform);
             } else {
-                transStr = getTransformStr(activePage.prop("pageData").pos1.transform);
+                transStr = dataUtil.getTransformStr(activePage.prop("pageData").pos1.transform);
             }
 
             activePage.css("transform", transStr);

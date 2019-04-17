@@ -1,4 +1,5 @@
 define({
+    type: "scroll",
     animation: [{
         type: "animeIn",
         name: "animate_top_fade_move_in",

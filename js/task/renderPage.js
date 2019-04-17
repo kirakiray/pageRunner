@@ -5,7 +5,7 @@ drill.init(async (load, d) => {
         data
     } = d;
 
-    let [getTransformStr, viewUtil, cacheUtil, commonData] = await load("util/getTransformStr", "util/viewUtil", "util/cacheUtil", "common/data");
+    let [dataUtil, viewUtil, cacheUtil, commonData] = await load("util/dataUtil", "util/viewUtil", "util/cacheUtil", "common/data");
 
     // 设置通用css
     const setEleCSS = (tarEle, data) => {
@@ -189,11 +189,11 @@ drill.init(async (load, d) => {
             })
         } else if (pageId < activeId) {
             page.css({
-                "transform": getTransformStr(p.pos1.transform)
+                "transform": dataUtil.getTransformStr(p.pos1.transform)
             });
         } else {
             page.css({
-                "transform": getTransformStr(p.pos2.transform)
+                "transform": dataUtil.getTransformStr(p.pos2.transform)
             });
         }
 

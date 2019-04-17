@@ -23,7 +23,6 @@ drill.define(async (load) => {
             let childs = $page.children();
             childs.each((i, e) => {
                 let ele = $(e).find(".p_ele");
-                // let ele = $(e).find(".p_ele_inner");
 
                 if (!ele.length) {
                     return;
@@ -61,7 +60,6 @@ drill.define(async (load) => {
 
             let childs = $page.children();
             childs.each((i, e) => {
-                // let ele = $(e).find(".p_ele_inner");
                 let ele = $(e).find(".p_ele");
 
                 if (!ele.length) {

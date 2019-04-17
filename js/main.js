@@ -5,19 +5,19 @@
     await load("xque");
 
     // 加载基础库
-    let [addLength, transPos, animateUtil] = await load("util/addLength", "util/transPos", "util/animateUtil");
+    let [dataUtil, animateUtil] = await load("util/dataUtil", "util/animateUtil");
 
     // 设置初始animation
     animateUtil.animation = data.animation;
 
     // 添加长度参数
-    addLength(data);
+    dataUtil.addLength(data);
 
     // 添加active
     await load("task/addActive").post(data);
 
     // 转换定位数据
-    transPos(data);
+    dataUtil.transPos(data);
 
     let mainEle = $(".main");
 
