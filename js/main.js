@@ -28,10 +28,10 @@
     });
 
     // 去除主的loading
-    $('.mainLoading').addClass("eleFadeOut");
-    setTimeout(() => {
-        $('.mainLoading').remove();
-    }, 300);
+    // $('.mainLoading').addClass("eleFadeOut");
+    // setTimeout(() => {
+    $('.mainLoading').remove();
+    // }, 300);
 
     // 获取激活的页面id
     let initActiveId = 0;
@@ -48,7 +48,9 @@
     // 根据type进行初始化类型
     switch (data.type) {
         case "scroll":
-            await load("task/scroll/initScrollMode");
+            await load("task/scroll/initScrollMode").post({
+                initActiveId
+            });
             break;
         case "h5":
         default:

@@ -6,23 +6,6 @@ body {
   padding: 0;
   font-family: "FZLanTingHei-R-GBK", STHeiti STXihei, Microsoft Yahei, Arial;
 }
-::-webkit-scrollbar {
-  width: 10px;
-}
-/* 滚动槽 */
-::-webkit-scrollbar-track {
-  box-shadow: rgba(0, 0, 0, 0.3) 0 0 2px;
-  border-radius: 10px;
-}
-/* 滚动条滑块 */
-::-webkit-scrollbar-thumb {
-  border-radius: 10px;
-  background: rgba(0, 0, 0, 0.1);
-  box-shadow: rgba(0, 0, 0, 0.5) 0 0 3px;
-}
-::-webkit-scrollbar-thumb:window-inactive {
-  background: rgba(0, 0, 0, 0.2);
-}
 .p_main,
 .p_main > .page {
   position: absolute;
@@ -90,6 +73,7 @@ body {
   overflow: hidden;
   -webkit-overflow-scrolling: touch;
   z-index: 20;
+  background-color: #fff;
 }
 .mainLoading > .page {
   display: none;

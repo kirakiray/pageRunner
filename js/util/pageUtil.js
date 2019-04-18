@@ -21,9 +21,9 @@ drill.define(async (load) => {
         // 运行页面动画
         runPageAnime($page) {
             // 判断页面是否当前页，不是的话就别比比了
-            if (commonData.currentPageId != $page.index()) {
-                return;
-            }
+            // if (commonData.currentPageId != $page.index()) {
+            //     return;
+            // }
 
             let childs = $page.children();
             childs.each((i, e) => {
