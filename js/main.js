@@ -4,8 +4,6 @@
 
     await load("xque");
 
-    let commonData = await load("common/data");
-
     // 加载基础库
     let [dataUtil, animateUtil] = await load("util/dataUtil", "util/animateUtil");
 
@@ -44,8 +42,14 @@
         }
     });
 
+    // 添加类型
+    mainEle.attr('h5-mode', data.type || "h5");
+
     // 根据type进行初始化类型
     switch (data.type) {
+        case "scroll":
+            await load("task/scroll/initScrollMode");
+            break;
         case "h5":
         default:
             // 默认走h5类型
@@ -55,10 +59,10 @@
             });
     }
 
-    commonData.on("changePageStart", (e, data) => {
-        console.log("changePageStart => ", data);
-    });
-    commonData.on("changePageEnd", (e, data) => {
-        console.log("changePageEnd => ", data);
-    });
+    // commonData.on("changePageStart", (e, data) => {
+    //     console.log("changePageStart => ", data);
+    // });
+    // commonData.on("changePageEnd", (e, data) => {
+    //     console.log("changePageEnd => ", data);
+    // });
 })();

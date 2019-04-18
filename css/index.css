@@ -6,6 +6,23 @@ body {
   padding: 0;
   font-family: "FZLanTingHei-R-GBK", STHeiti STXihei, Microsoft Yahei, Arial;
 }
+::-webkit-scrollbar {
+  width: 10px;
+}
+/* 滚动槽 */
+::-webkit-scrollbar-track {
+  box-shadow: rgba(0, 0, 0, 0.3) 0 0 2px;
+  border-radius: 10px;
+}
+/* 滚动条滑块 */
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.1);
+  box-shadow: rgba(0, 0, 0, 0.5) 0 0 3px;
+}
+::-webkit-scrollbar-thumb:window-inactive {
+  background: rgba(0, 0, 0, 0.2);
+}
 .p_main,
 .p_main > .page {
   position: absolute;
@@ -28,8 +45,7 @@ body {
   display: block;
   z-index: 3;
 }
-.p_main > .page[active="2"],
-.p_main > .page[active="3"] {
+.p_main > .page[active="2"] {
   display: block;
   z-index: 2;
 }
@@ -56,6 +72,15 @@ body {
 .p_main .p_text {
   word-break: break-all;
 }
+.p_main[h5-mode="scroll"] {
+  overflow-y: auto;
+}
+.p_main[h5-mode="scroll"] > .page {
+  display: block;
+  position: relative;
+  left: auto;
+  top: auto;
+}
 .mainLoading {
   position: absolute;
   left: 0;
@@ -76,8 +101,7 @@ body {
   display: block;
   z-index: 3;
 }
-.mainLoading > .page[active="2"],
-.mainLoading > .page[active="3"] {
+.mainLoading > .page[active="2"] {
   display: block;
   z-index: 2;
 }
@@ -103,6 +127,15 @@ body {
 }
 .mainLoading .p_text {
   word-break: break-all;
+}
+.mainLoading[h5-mode="scroll"] {
+  overflow-y: auto;
+}
+.mainLoading[h5-mode="scroll"] > .page {
+  display: block;
+  position: relative;
+  left: auto;
+  top: auto;
 }
 .loading_layer {
   position: absolute;
