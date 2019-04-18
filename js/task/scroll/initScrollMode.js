@@ -12,28 +12,38 @@ drill.init(async (load, {
     let pageFirst = mainEle.children().eq(initActiveId);
     let pageData = pageFirst.prop("pageData");
 
-    // 注册隐藏
-    commonData.on("pageLoaded", (e, d) => {
-        // 清空内元素进行动画
-        pageUtil.clearPageAnime(d.page);
-    });
-
-    // 点火第一个
-    await pageData.startLoad();
-
-    // 等待300毫秒，等元素内Loading动画结束
-    await new Promise(res => setTimeout(res, 300));
-
+    // runnerAnime记录
     let runAnimeSetter = new Set();
 
     // 添加初始那个
     runAnimeSetter.add(initActiveId);
 
-    // 进行动画
-    pageUtil.runPageAnime(pageFirst);
+    // 注册隐藏
+    commonData.on("pageLoaded", (e, d) => {
+        // 比initActiveId大的都要清除
+        if (d.pageId >= initActiveId) {
+            // 清空内元素进行动画
+            pageUtil.clearPageAnime(d.page);
+        } else {
+            runAnimeSetter.add(d.pageId);
+        }
+    });
 
     // 滚动监听
     let mEle = mainEle[0];
+
+    // 点火第一个
+    await pageData.startLoad();
+
+    // 滚动到第一个页面的位置
+    mEle.scrollTop = mEle.offsetHeight * initActiveId;
+
+    // 等待300毫秒，等元素内Loading动画结束
+    await new Promise(res => setTimeout(res, 300));
+
+    // 进行动画
+    pageUtil.runPageAnime(pageFirst);
+
     let mTimer = 0;
     mEle.addEventListener("scroll", e => {
         if (mTimer) {

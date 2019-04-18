@@ -33,9 +33,11 @@
     $('.mainLoading').remove();
     // }, 300);
 
+    let mainPage = data.mainPage;
+
     // 获取激活的页面id
     let initActiveId = 0;
-    Array.from(data.mainPage).some((e, i) => {
+    Array.from(mainPage).some((e, i) => {
         if (e.active) {
             initActiveId = i;
             return true;
@@ -43,10 +45,10 @@
     });
 
     // 添加类型
-    mainEle.attr('h5-mode', data.type || "h5");
+    mainEle.attr('h5-mode', mainPage.type || "h5");
 
     // 根据type进行初始化类型
-    switch (data.type) {
+    switch (mainPage.type) {
         case "scroll":
             await load("task/scroll/initScrollMode").post({
                 initActiveId

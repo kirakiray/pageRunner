@@ -1,5 +1,4 @@
 define({
-    type: "scroll",
     animation: [{
         type: "animeIn",
         name: "animate_top_fade_move_in",
@@ -38,6 +37,7 @@ define({
         }
     }],
     mainPage: {
+        type: "scroll",
         0: {
             tag: "page",
             "pageIn": "animate_top_fade_move_in",
