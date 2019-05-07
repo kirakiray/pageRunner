@@ -161,6 +161,12 @@ drill.define(function () {
                 // 设置元素
                 $pele.css(skey, val);
             });
+
+            // 其他属性直接设置
+            ["textAlign"].forEach(function (k) {
+                var val = eleData[k];
+                $pele.css(k, val);
+            });
         }
     };
 

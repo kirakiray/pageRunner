@@ -56,7 +56,7 @@ define({
                 "fontSize": "8bw",
                 "lineHeight": "1.6em",
                 "letterSpacing": "0",
-                "textAlign": "left",
+                "textAlign": "center",
                 "textDecoration": "none",
                 "fontWeight": "normal",
                 "fontStyle": "normal",
