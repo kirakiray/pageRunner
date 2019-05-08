@@ -50,7 +50,7 @@ drill.init(async (load, d) => {
                 case "text":
                     // 添加class
                     tarEle.addClass('p_text');
-                    tarEle.text(e.intext);
+                    tarEle.html(e.intext.replace(/\n/g, "<br>"));
 
                     // 设置字体大小颜色什么的
                     ["fontWeight", "fontStyle", "color", "lineHeight"].forEach(k => {

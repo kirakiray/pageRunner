@@ -45,7 +45,7 @@ define({
             "background-color": "#aaa",
             0: {
                 tag: "text",
-                intext: "我是文本1",
+                intext: "我是文本1\n回车文本",
                 "target": "safe",
                 "hor": "center",
                 "ver": "center",
