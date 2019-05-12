@@ -92,7 +92,7 @@ drill.init(function () {
 
                             // 当scrollTop达到相应高度时，进行动画设定
 
-                            var snum = Math.floor((scrollTop + scrollTop / 4) / offsetHeight);
+                            var snum = Math.floor((scrollTop + offsetHeight / 4) / offsetHeight);
 
                             // 判断是否存在，不存在进行动画
                             if (!runAnimeSetter.has(snum)) {
