@@ -38,6 +38,11 @@ define({
     }],
     mainPage: {
         type: "scroll",
+        // 是以这个规范来制作的页面
+        // width: 1280,
+        // height: 720,
+        width: 480,
+        height: 720,
         0: {
             tag: "page",
             "pageIn": "animate_top_fade_move_in",

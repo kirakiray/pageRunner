@@ -1,4 +1,4 @@
-drill.define(() => {
+drill.define(async (load) => {
     // 获取单位
     const getUnit = val => {
         let arr = /[\d\.]+(.+)/.exec(val);
@@ -6,6 +6,46 @@ drill.define(() => {
     };
 
     let mainEle = $(".p_main");
+
+    // 主页面数据
+    let rData = await load("data -r");
+    let setPageWidth = rData.mainPage.width;
+    let setPageHeight = rData.mainPage.height;
+    let isWidthLarger = setPageWidth > setPageHeight;
+
+    if (!isWidthLarger) {
+        const resizeFun = () => {
+            // 直接修正屏幕容器
+            // if (!isWidthLarger) {
+            let p_height = $('body').height();
+            let p_width = $('body').width();
+            let ratio = p_width / p_height;
+            if (ratio > 1) {
+                // 直接设定回等比例的值
+                mainEle.css({
+                    width: setPageWidth / setPageHeight * p_height + "px",
+                    height: p_height + "px",
+                    left: (p_width - (setPageWidth / setPageHeight * p_height)) / 2 + "px"
+                })
+            } else {
+                mainEle.css({
+                    width: "",
+                    height: "",
+                    left: ""
+                })
+            }
+            // }
+        }
+
+        // 当页面大小改变时，修正元素大小
+        let resizeTimer;
+        $(window).on("resize", e => {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(resizeFun, 300);
+        });
+
+        resizeFun();
+    }
 
     // 刷新视图的宽高定位
     const refreshView = (ele) => {
@@ -27,6 +67,51 @@ drill.define(() => {
             // 获取当前页的宽高
             let p_width = mainEle.width();
             let p_height = mainEle.height();
+
+            // 区域大小渲染
+            switch (eleData.target) {
+                case "safe":
+                    // 安全区的定义
+                    // 如果是宽大于高的定义（横屏），则控制安全区的比例在 2 到 1 之间；
+                    // 如果是竖屏的定义，在横屏时显示竖着的设定比例值；
+                    let $ele = $(ele);
+
+                    // 屏幕比例
+                    let ratio = p_width / p_height;
+
+                    // 文件数据上是否宽度更大
+                    if (isWidthLarger) {
+                        if (ratio > 2) {
+                            // 保持高度上的缩放
+                            $ele.css({
+                                left: (p_width - p_height * 2) / 2 + "px",
+                                width: p_height * 2 + "px",
+                                height: p_height + "px"
+                            });
+
+                            // 修正p_width
+                            p_width = p_height * 2;
+                        } else if (ratio < 1) {
+                            // 保持高度上的缩放
+                            $ele.css({
+                                top: (p_height - p_width) / 2 + "px",
+                                width: p_width + "px",
+                                height: p_width + "px"
+                            });
+
+                            // 修正p_height
+                            p_height = p_width;
+                        } else {
+                            $ele.css({
+                                left: "",
+                                top: "",
+                                width: "",
+                                height: ""
+                            });
+                        }
+                    }
+                    break;
+            }
 
             // 计算并重新设置盒模型的值
             let {
@@ -163,6 +248,8 @@ drill.define(() => {
                 let val = eleData[k];
                 $pele.css(k, val);
             });
+
+            console.log("ele target => ", eleData.target);
         }
     }
 

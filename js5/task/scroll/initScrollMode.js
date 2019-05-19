@@ -90,7 +90,7 @@ drill.init(function () {
                                 offsetWidth = mEle.offsetWidth,
                                 offsetHeight = mEle.offsetHeight;
 
-                            // 当scrollTop达到相应高度时，进行动画设定
+                            // 当scrollTop达到相应高度时，进行动画设定 
 
                             var snum = Math.floor((scrollTop + offsetHeight / 4) / offsetHeight);
 
