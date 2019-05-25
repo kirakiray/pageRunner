@@ -23,6 +23,13 @@ drill.init(async (load) => {
             // 初始化
             load("util/viewUtil").then(viewUtil => {
                 viewUtil.refreshView(tarPage[0]);
+
+                let relyjs = tarPage.attr('p-rely');
+
+                // 加载rely-js
+                load(relyjs).post({
+                    page: tarPage
+                });
             });
         }
     });

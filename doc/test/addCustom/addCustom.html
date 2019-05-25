@@ -30,12 +30,13 @@
         <!--
         p-page 目标页id 从0开始数起,0是相对第一页
         p-target 相对区域 safe是安全区   screen是全屏大小
-        p-rely 当该元素添加成功后，执行依赖js文件，可以是 drill.js 模块依赖规范； 
+        p-rely 当该元素添加成功后，执行依赖js文件，可以是 drill.js 模块依赖规范； -r 入口页的目录上查找
         当前元素会变成区域容器元素
         默认是display:flex的垂直居中布局
         -->
-        <div p-page="1" p-target="safe" hor="center" ver="center" p-rely="">
+        <div p-page="1" p-target="safe" hor="center" ver="center" p-rely="customTest -r">
             <a href="https://kirakiray.com/pageCreator/" target="_blank">PageCreator官网</a>
+            <button id="testTarget">点击弹窗</button>
         </div>
     </div>
     <script>

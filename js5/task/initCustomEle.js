@@ -37,6 +37,13 @@ drill.init(function () {
                                 // 初始化
                                 load("util/viewUtil").then(function (viewUtil) {
                                     viewUtil.refreshView(tarPage[0]);
+
+                                    var relyjs = tarPage.attr('p-rely');
+
+                                    // 加载rely-js
+                                    load(relyjs).post({
+                                        page: tarPage
+                                    });
                                 });
                             }
                         });
