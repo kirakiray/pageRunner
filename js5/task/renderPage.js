@@ -7,7 +7,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 // 渲染数据到html
 drill.init(function () {
     var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(load, d) {
-        var target, data, _ref2, _ref3, viewUtil, cacheUtil, commonData, setEleCSS, addEles, resizeTimer;
+        var target, data, _ref2, _ref3, viewUtil, cacheUtil, commonData, setEleCSS, addEles, mainLoading, resizeTimer;
 
         return regeneratorRuntime.wrap(function _callee2$(_context2) {
             while (1) {
@@ -87,11 +87,21 @@ drill.init(function () {
                             });
                         };
 
+                        // loading元素的替换
+
+
+                        mainLoading = $('.mainLoading');
+
+
+                        if (mainLoading.length) {
+                            mainLoading = mainLoading.html();
+                        } else {
+                            mainLoading = "\n        <div class=\"loading_layer\">\n            <svg width=\"38\" height=\"38\" viewBox=\"0 0 38 38\" xmlns=\"http://www.w3.org/2000/svg\" stroke=\"rgba(200,200,200,.5)\">\n                <g fill=\"none\" fill-rule=\"evenodd\">\n                    <g transform=\"translate(1 1)\" stroke-width=\"2\">\n                        <circle stroke-opacity=\".5\" cx=\"18\" cy=\"18\" r=\"18\" />\n                        <path d=\"M36 18c0-9.94-8.06-18-18-18\"></path>\n                    </g>\n                </g>\n            </svg>\n        </div>\n        ";
+                        }
+
                         // 填充html
-
-
                         Array.from(data.mainPage).forEach(function (p, pageId) {
-                            var page = $("\n        <div class=\"page\">\n            <div class=\"loading_layer\">\n                <svg width=\"38\" height=\"38\" viewBox=\"0 0 38 38\" xmlns=\"http://www.w3.org/2000/svg\" stroke=\"rgba(200,200,200,.5)\">\n                    <g fill=\"none\" fill-rule=\"evenodd\">\n                        <g transform=\"translate(1 1)\" stroke-width=\"2\">\n                            <circle stroke-opacity=\".5\" cx=\"18\" cy=\"18\" r=\"18\" />\n                            <path d=\"M36 18c0-9.94-8.06-18-18-18\"></path>\n                        </g>\n                    </g>\n                </svg>\n            </div>\n        </div>\n        ");
+                            var page = $("\n        <div class=\"page\">\n            " + mainLoading + "\n        </div>\n        ");
 
                             // 设置样式
                             setEleCSS(page, p);
@@ -216,7 +226,7 @@ drill.init(function () {
                             }, 300);
                         });
 
-                    case 14:
+                    case 16:
                     case "end":
                         return _context2.stop();
                 }

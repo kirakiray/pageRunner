@@ -71,20 +71,31 @@ drill.init(async (load, d) => {
         });
     }
 
+    // loading元素的替换
+    let mainLoading = $('.mainLoading');
+
+    if (mainLoading.length) {
+        mainLoading = mainLoading.html();
+    } else {
+        mainLoading = `
+        <div class="loading_layer">
+            <svg width="38" height="38" viewBox="0 0 38 38" xmlns="http://www.w3.org/2000/svg" stroke="rgba(200,200,200,.5)">
+                <g fill="none" fill-rule="evenodd">
+                    <g transform="translate(1 1)" stroke-width="2">
+                        <circle stroke-opacity=".5" cx="18" cy="18" r="18" />
+                        <path d="M36 18c0-9.94-8.06-18-18-18"></path>
+                    </g>
+                </g>
+            </svg>
+        </div>
+        `;
+    }
+
     // 填充html
     Array.from(data.mainPage).forEach((p, pageId) => {
         let page = $(`
         <div class="page">
-            <div class="loading_layer">
-                <svg width="38" height="38" viewBox="0 0 38 38" xmlns="http://www.w3.org/2000/svg" stroke="rgba(200,200,200,.5)">
-                    <g fill="none" fill-rule="evenodd">
-                        <g transform="translate(1 1)" stroke-width="2">
-                            <circle stroke-opacity=".5" cx="18" cy="18" r="18" />
-                            <path d="M36 18c0-9.94-8.06-18-18-18"></path>
-                        </g>
-                    </g>
-                </svg>
-            </div>
+            ${mainLoading}
         </div>
         `);
 
