@@ -24,8 +24,8 @@ drill.init(function () {
                             if (tarPage.length) {
                                 tarPage.prop("eleData", {
                                     "target": tarPage.attr("p-target") || "safe",
-                                    "hor": tarPage.attr("hor") || "center",
-                                    "ver": tarPage.attr("ver") || "center",
+                                    "hor": "center",
+                                    "ver": "center",
                                     "x": "0",
                                     "y": "0",
                                     "w": "100%",
