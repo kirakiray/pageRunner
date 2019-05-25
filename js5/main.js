@@ -27,29 +27,36 @@ _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
                     commonData = _context.sent;
 
 
+                    // 给外部用的对象，内部模块别使用该对象
+                    window.pageRunner = {
+                        v: "10000",
+                        data: data,
+                        commonData: commonData
+                    };
+
                     if (window.beforeInit) {
                         beforeInit(commonData, data);
                     }
 
                     // 加载基础库
-                    _context.next = 11;
+                    _context.next = 12;
                     return load("util/dataUtil", "util/animateUtil");
 
-                case 11:
+                case 12:
                     _ref2 = _context.sent;
                     _ref3 = _slicedToArray(_ref2, 2);
                     dataUtil = _ref3[0];
                     animateUtil = _ref3[1];
 
                     if (!$('[p-custom]').length) {
-                        _context.next = 18;
+                        _context.next = 19;
                         break;
                     }
 
-                    _context.next = 18;
+                    _context.next = 19;
                     return load("task/initCustomEle");
 
-                case 18:
+                case 19:
 
                     // 设置初始animation
                     animateUtil.animation = data.animation;
@@ -58,10 +65,10 @@ _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
                     dataUtil.addLength(data);
 
                     // 修正activeId
-                    _context.next = 22;
+                    _context.next = 23;
                     return load("task/fixActive").post(data);
 
-                case 22:
+                case 23:
 
                     // 转换定位数据
                     dataUtil.transPos(data);
@@ -70,13 +77,13 @@ _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
 
                     // 渲染数据
 
-                    _context.next = 26;
+                    _context.next = 27;
                     return load('task/renderPage').post({
                         target: mainEle,
                         data: data
                     });
 
-                case 26:
+                case 27:
 
                     // 去除主的loading
                     // $('.mainLoading').addClass("eleFadeOut");
@@ -102,25 +109,25 @@ _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
 
                     // 根据type进行初始化类型
                     _context.t0 = mainPage.type;
-                    _context.next = _context.t0 === "scroll" ? 34 : _context.t0 === "h5" ? 37 : 37;
+                    _context.next = _context.t0 === "scroll" ? 35 : _context.t0 === "h5" ? 38 : 38;
                     break;
 
-                case 34:
-                    _context.next = 36;
+                case 35:
+                    _context.next = 37;
                     return load("task/scroll/initScrollMode").post({
                         initActiveId: initActiveId
                     });
 
-                case 36:
-                    return _context.abrupt("break", 39);
-
                 case 37:
-                    _context.next = 39;
+                    return _context.abrupt("break", 40);
+
+                case 38:
+                    _context.next = 40;
                     return load("task/h5/initH5").post({
                         initActiveId: initActiveId
                     });
 
-                case 39:
+                case 40:
                 case "end":
                     return _context.stop();
             }
