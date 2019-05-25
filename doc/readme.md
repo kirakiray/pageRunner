@@ -40,3 +40,7 @@
 `.mainLoading` 最初始的 `loading` 显示的元素，可以修改这个元素换成你想要的Loading图案；默认是一个旋转的svg动画；你也可以替换成gif，但请保持gif的大小，loading就是满网速的用户过渡，太大的loding图片会占用网速，会让过渡体验变差；所以尽量采用小图加css动画的模式制作loading；
 
 项目使用的模块化框架是 [`drill.js`](https://github.com/kirakiray/drill.js)，具体可查看它的使用文档，平时其实也就用 `load` 方法即可；
+
+## [添加自定义元素](test/addCustom/)
+
+关于添加表单或标签之类的元素；

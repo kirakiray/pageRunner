@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>新增自定义元素</title>
+    <link rel="stylesheet" href="../../css/index.css">
+    <script src="custom_start.js"></script>
+</head>
+
+<body>
+    <div class="p_main"></div>
+    <div class="mainLoading">
+        <div class="loading_layer">
+            <svg width="38" height="38" viewBox="0 0 38 38" xmlns="http://www.w3.org/2000/svg"
+                stroke="rgba(200,200,200,.5)">
+                <g fill="none" fill-rule="evenodd">
+                    <g transform="translate(1 1)" stroke-width="2">
+                        <circle stroke-opacity=".5" cx="18" cy="18" r="18" />
+                        <path d="M36 18c0-9.94-8.06-18-18-18"></path>
+                    </g>
+                </g>
+            </svg>
+        </div>
+    </div>
+    <div p-custom>
+        <!--
+        p-page 目标页id 从0开始数起,0是相对第一页
+        p-target 相对区域
+        p-rely 当该元素添加成功后，执行依赖js文件，可以是 drill.js 模块依赖规范； 
+        当前元素会变成区域元素
+        -->
+        <div p-page="1" p-target="safe" p-rely="" style="background-color:green;">
+            <a href="https://kirakiray.com/pageCreator/">PageCreator官网</a>
+            <br>
+        </div>
+    </div>
+</body>
+
+</html>
