@@ -30,7 +30,7 @@
     // 去除主的loading
     // $('.mainLoading').addClass("eleFadeOut");
     // setTimeout(() => {
-    $('.mainLoading').remove();
+    $('.mainLoading').hide();
     // }, 300);
 
     let mainPage = data.mainPage;

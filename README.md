@@ -12,13 +12,17 @@ PageCreator的h5运行器，可二次开发；
 
 `polyfill/` 当运行环境不支持 `es7`时，项目依赖的 `polyfill` 底层库；
 
-`data.js` 是 [PageCreator](https://kirakiray.com/pageCreator/) 生成的主体数据文件，关于项目和内部元素的信息都在这里，该json结构完全开源；如果不想基于PageCreator使用该项目，可以手动编写该json文件；
+`data.js` 是 [PageCreator](https://kirakiray.com/pageCreator/) 生成的主体数据文件，关于项目和内部元素的信息都在这里，该json结构完全开源；如果不想基于PageCreator使用该项目，可以手动编写该json文件；
 
 `index.html` 主体页面入口；
 
 `start.js` 主体入口逻辑，判断运行环境来选择使用 `js/` 或 `js5/`，修改项目的 `baseUrl`等信息，可以通过该文件；
 
-其他文件是项目脚手架等，是实体运行项目不需要的文件，开发时候需要的编译文件；
+其他文件是项目脚手架等，是实体运行项目不需要的文件，开发时候需要的编译依赖文件或目录；使用 `pageRunner`的话，只需要拷贝以上6个目录或文件在同一个文件夹下；
+
+## 二次开发文档
+
+[开发文档](doc/readme.md)
 
 ## Q&A
 

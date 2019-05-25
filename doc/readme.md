@@ -1,9 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
+# pageRunner的二次开发
 
+## 文件介绍
+
+主体 `index.html` 入口文件介绍，代码如下：
+
+```html
 <head>
     <meta charset="UTF-8">
-    <meta name="renderer" content="webkit">
+    <meta name="renderer" content="webkit"> 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>page runner</title>
@@ -27,5 +31,12 @@
         </div>
     </div>
 </body>
+```
 
-</html>
+`.p_main` 元素是主体渲染元素，当 `start.js` 运行后，会将当前的 `pageRunner` 的主体代码渲染在这个元素里；
+
+`start.js` 运行后，判断当前的运行环境，支持 `es7` 环境，会使用 `js/` 初始化逻辑；判断不支持 `es7`，会先载入`polyfill` 依赖，再用 `es5/`的逻辑；
+
+`.mainLoading` 最初始的 `loading` 显示的元素，可以修改这个元素换成你想要的Loading图案；默认是一个旋转的svg动画；
+
+项目使用的模块化框架是 [`drill.js`](https://github.com/kirakiray/drill.js)，具体可查看它的使用文档，平时其实也就用 `load` 方法即可；

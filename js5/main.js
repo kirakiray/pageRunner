@@ -60,7 +60,7 @@ _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
                     // 去除主的loading
                     // $('.mainLoading').addClass("eleFadeOut");
                     // setTimeout(() => {
-                    $('.mainLoading').remove();
+                    $('.mainLoading').hide();
                     // }, 300);
 
                     mainPage = data.mainPage;
