@@ -4,8 +4,19 @@
 
     await load("xque");
 
+    let commonData = await load('common/data');
+
+    if (window.beforeInit) {
+        beforeInit(commonData, data);
+    }
+
     // 加载基础库
     let [dataUtil, animateUtil] = await load("util/dataUtil", "util/animateUtil");
+
+    // 自定义数据
+    if ($('[p-custom]').length) {
+        await load("task/initCustomEle");
+    }
 
     // 设置初始animation
     animateUtil.animation = data.animation;

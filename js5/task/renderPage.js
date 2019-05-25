@@ -125,6 +125,12 @@ drill.init(function () {
 
                                             case 2:
 
+                                                // 触发开始load事件
+                                                commonData.trigger("pageStartLoad", {
+                                                    page: page,
+                                                    pageId: pageId
+                                                });
+
                                                 // 设置加载中
                                                 p.loaded = 2;
 
@@ -143,10 +149,10 @@ drill.init(function () {
                                                 });
 
                                                 // 缓存元素内的所有图片
-                                                _context.next = 7;
+                                                _context.next = 8;
                                                 return cacheUtil.cacheImg(imgarr);
 
-                                            case 7:
+                                            case 8:
 
                                                 // 添加元素进去
                                                 // 填充子元素
@@ -171,7 +177,7 @@ drill.init(function () {
 
                                                 return _context.abrupt("return", 1);
 
-                                            case 14:
+                                            case 15:
                                             case "end":
                                                 return _context.stop();
                                         }

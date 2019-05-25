@@ -89,13 +89,14 @@ drill.define(function () {
                                 var p_width = mainEle.width();
                                 var p_height = mainEle.height();
 
+                                // let $ele = $(ele);
+
                                 // 区域大小渲染
                                 switch (eleData.target) {
                                     case "safe":
                                         // 安全区的定义
                                         // 如果是宽大于高的定义（横屏），则控制安全区的比例在 2 到 1 之间；
                                         // 如果是竖屏的定义，在横屏时显示竖着的设定比例值；
-                                        var _$ele = $(ele);
 
                                         // 屏幕比例
                                         var ratio = p_width / p_height;
@@ -104,7 +105,7 @@ drill.define(function () {
                                         if (isWidthLarger) {
                                             if (ratio > 2) {
                                                 // 保持高度上的缩放
-                                                _$ele.css({
+                                                $ele.css({
                                                     left: (p_width - p_height * 2) / 2 + "px",
                                                     width: p_height * 2 + "px",
                                                     height: p_height + "px"
@@ -114,7 +115,7 @@ drill.define(function () {
                                                 p_width = p_height * 2;
                                             } else if (ratio < 1) {
                                                 // 保持高度上的缩放
-                                                _$ele.css({
+                                                $ele.css({
                                                     top: (p_height - p_width) / 2 + "px",
                                                     width: p_width + "px",
                                                     height: p_width + "px"
@@ -123,7 +124,7 @@ drill.define(function () {
                                                 // 修正p_height
                                                 p_height = p_width;
                                             } else {
-                                                _$ele.css({
+                                                $ele.css({
                                                     left: "",
                                                     top: "",
                                                     width: "",
@@ -132,6 +133,12 @@ drill.define(function () {
                                             }
                                         }
                                         break;
+                                    // case "screen":
+                                    //     $ele.css({
+                                    //         width: "100%",
+                                    //         height: "100%"
+                                    //     });
+                                    //     break;
                                 }
 
                                 // 计算并重新设置盒模型的值
@@ -237,41 +244,41 @@ drill.define(function () {
                                 left += "px";
                                 bottom += "px";
 
-                                // 设置定位
-                                $pele.css({
-                                    width: width,
-                                    height: height,
-                                    left: left,
-                                    bottom: bottom
-                                });
+                                if ($pele.length) {
+                                    // 设置定位
+                                    $pele.css({
+                                        width: width,
+                                        height: height,
+                                        left: left,
+                                        bottom: bottom
+                                    });
 
-                                // 设置并修正各个值
-                                [["letterSpacing", "letterSpacing"], ["fontSize", "fontSize"]].forEach(function (e) {
-                                    var _e = _slicedToArray(e, 2),
-                                        skey = _e[0],
-                                        k = _e[1];
+                                    // 设置并修正各个值
+                                    [["letterSpacing", "letterSpacing"], ["fontSize", "fontSize"]].forEach(function (e) {
+                                        var _e = _slicedToArray(e, 2),
+                                            skey = _e[0],
+                                            k = _e[1];
 
-                                    var val = eleData[k];
+                                        var val = eleData[k];
 
-                                    // 判断是否需要转换bw单位
-                                    var unit = getUnit(val);
+                                        // 判断是否需要转换bw单位
+                                        var unit = getUnit(val);
 
-                                    if (unit == "bw") {
-                                        // 转换像素
-                                        val = (parseFloat(val) * bwPx).toFixed(3) + "px";
-                                    }
+                                        if (unit == "bw") {
+                                            // 转换像素
+                                            val = (parseFloat(val) * bwPx).toFixed(3) + "px";
+                                        }
 
-                                    // 设置元素
-                                    $pele.css(skey, val);
-                                });
+                                        // 设置元素
+                                        $pele.css(skey, val);
+                                    });
 
-                                // 其他属性直接设置
-                                ["textAlign"].forEach(function (k) {
-                                    var val = eleData[k];
-                                    $pele.css(k, val);
-                                });
-
-                                console.log("ele target => ", eleData.target);
+                                    // 其他属性直接设置
+                                    ["textAlign"].forEach(function (k) {
+                                        var val = eleData[k];
+                                        $pele.css(k, val);
+                                    });
+                                }
                             }
                         };
 

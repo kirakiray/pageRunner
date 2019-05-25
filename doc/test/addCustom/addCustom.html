@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>新增自定义元素</title>
-    <link rel="stylesheet" href="../../css/index.css">
+    <link rel="stylesheet" href="../../../css/index.css">
     <script src="custom_start.js"></script>
 </head>
 
@@ -29,15 +29,39 @@
     <div p-custom>
         <!--
         p-page 目标页id 从0开始数起,0是相对第一页
-        p-target 相对区域
+        p-target 相对区域 safe是安全区   screen是全屏大小
         p-rely 当该元素添加成功后，执行依赖js文件，可以是 drill.js 模块依赖规范； 
-        当前元素会变成区域元素
+        当前元素会变成区域容器元素
+        默认是display:flex的垂直居中布局
         -->
-        <div p-page="1" p-target="safe" p-rely="" style="background-color:green;">
-            <a href="https://kirakiray.com/pageCreator/">PageCreator官网</a>
-            <br>
+        <div p-page="1" p-target="safe" hor="center" ver="center" p-rely="">
+            <a href="https://kirakiray.com/pageCreator/" target="_blank">PageCreator官网</a>
         </div>
     </div>
+    <script>
+        // 框架刚开始载入时，会触发全局的 beforeInit 函数
+        window.beforeInit = function (commonData, pageData) {
+            console.log('框架控制器数据 => ', commonData);
+            console.log('页面数据 => ', pageData);
+
+            commonData.on("pageStartLoad", (e, data) => {
+                console.log("页面开始加载 => ", data);
+            });
+
+            commonData.on("pageLoaded", (e, data) => {
+                console.log("页面加载完成 => ", data);
+            });
+
+            // changePageStart 和 changePageEnd 只会在 h5 模式触发
+            commonData.on("changePageStart", (e, data) => {
+                console.log("动画开始 => ", data);
+            });
+
+            commonData.on("changePageEnd", (e, data) => {
+                console.log("动画end => ", data);
+            });
+        };
+    </script>
 </body>
 
 </html>

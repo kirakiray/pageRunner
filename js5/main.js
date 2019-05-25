@@ -5,7 +5,7 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
 _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
-    var data, _ref2, _ref3, dataUtil, animateUtil, mainEle, mainPage, initActiveId;
+    var data, commonData, _ref2, _ref3, dataUtil, animateUtil, mainEle, mainPage, initActiveId;
 
     return regeneratorRuntime.wrap(function _callee$(_context) {
         while (1) {
@@ -21,14 +21,35 @@ _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
 
                 case 5:
                     _context.next = 7;
-                    return load("util/dataUtil", "util/animateUtil");
+                    return load('common/data');
 
                 case 7:
+                    commonData = _context.sent;
+
+
+                    if (window.beforeInit) {
+                        beforeInit(commonData, data);
+                    }
+
+                    // 加载基础库
+                    _context.next = 11;
+                    return load("util/dataUtil", "util/animateUtil");
+
+                case 11:
                     _ref2 = _context.sent;
                     _ref3 = _slicedToArray(_ref2, 2);
                     dataUtil = _ref3[0];
                     animateUtil = _ref3[1];
 
+                    if (!$('[p-custom]').length) {
+                        _context.next = 18;
+                        break;
+                    }
+
+                    _context.next = 18;
+                    return load("task/initCustomEle");
+
+                case 18:
 
                     // 设置初始animation
                     animateUtil.animation = data.animation;
@@ -37,10 +58,10 @@ _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
                     dataUtil.addLength(data);
 
                     // 修正activeId
-                    _context.next = 15;
+                    _context.next = 22;
                     return load("task/fixActive").post(data);
 
-                case 15:
+                case 22:
 
                     // 转换定位数据
                     dataUtil.transPos(data);
@@ -49,13 +70,13 @@ _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
 
                     // 渲染数据
 
-                    _context.next = 19;
+                    _context.next = 26;
                     return load('task/renderPage').post({
                         target: mainEle,
                         data: data
                     });
 
-                case 19:
+                case 26:
 
                     // 去除主的loading
                     // $('.mainLoading').addClass("eleFadeOut");
@@ -81,25 +102,25 @@ _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
 
                     // 根据type进行初始化类型
                     _context.t0 = mainPage.type;
-                    _context.next = _context.t0 === "scroll" ? 27 : _context.t0 === "h5" ? 30 : 30;
+                    _context.next = _context.t0 === "scroll" ? 34 : _context.t0 === "h5" ? 37 : 37;
                     break;
 
-                case 27:
-                    _context.next = 29;
+                case 34:
+                    _context.next = 36;
                     return load("task/scroll/initScrollMode").post({
                         initActiveId: initActiveId
                     });
 
-                case 29:
-                    return _context.abrupt("break", 32);
+                case 36:
+                    return _context.abrupt("break", 39);
 
-                case 30:
-                    _context.next = 32;
+                case 37:
+                    _context.next = 39;
                     return load("task/h5/initH5").post({
                         initActiveId: initActiveId
                     });
 
-                case 32:
+                case 39:
                 case "end":
                     return _context.stop();
             }

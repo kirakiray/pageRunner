@@ -112,6 +112,12 @@ drill.init(async (load, d) => {
                 return p.loaded;
             }
 
+            // 触发开始load事件
+            commonData.trigger("pageStartLoad", {
+                page,
+                pageId
+            });
+
             // 设置加载中
             p.loaded = 2;
 

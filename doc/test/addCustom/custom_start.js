@@ -19,23 +19,23 @@
 
     // 判断当前的环境
     if (isEs7) {
-        loadScript("../../js/drill.js", () => {
+        loadScript("../../../js/drill.js", () => {
             // 设置根目录
             drill.config({
-                baseUrl: "../../js/"
+                baseUrl: "../../../js/"
             });
 
-            loadScript("../../js/main.js");
+            loadScript("../../../js/main.js");
         });
     } else {
-        loadScript("../../polyfill/polyfill.js", function () {
-            loadScript("../../js5/drill.js", function () {
+        loadScript("../../../polyfill/polyfill.js", function () {
+            loadScript("../../../js5/drill.js", function () {
                 // 设置根目录
                 drill.config({
-                    baseUrl: "../../js/"
+                    baseUrl: "../../../js/"
                 });
 
-                loadScript("../../js5/main.js");
+                loadScript("../../../js5/main.js");
             });
         });
     }
