@@ -12,12 +12,11 @@ drill.define(_asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _c
                         // 主体animation
                         animation: [],
                         // 获取相应animation的提前设置样式对象
-                        getInitCSS: function getInitCSS(animateName) {
-                            animationUtil.animation.forEach(function (e) {
-                                debugger;
-                            });
-                        },
-
+                        // getInitCSS(animateName) {
+                        //     animationUtil.animation.forEach(e => {
+                        //         debugger
+                        //     });
+                        // },
                         // 转换frame对象成样式字符串
                         frameToStr: function frameToStr(frame) {
                             var str = "";
@@ -99,6 +98,7 @@ drill.define(_asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _c
                                 var cssStr = '';
 
                                 if (e.css) {
+                                    debugger;
                                     Object.keys(e.css).forEach(function (k) {
                                         var val = e.css[k];
                                         cssStr += k + ":" + val + ";";
@@ -106,7 +106,7 @@ drill.define(_asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _c
                                 }
 
                                 // 添加生成class
-                                str += "." + e.name + "{\n                    " + cssStr + "\n                    animation:" + e.name + " ease .5s;\n                }\n                ";
+                                str += "." + e.name + "{\n                    " + cssStr + "\n                    -webkit-animation:" + e.name + " ease .5s;\n                    animation:" + e.name + " ease .5s;\n                }\n                ";
                             });
 
                             return str;

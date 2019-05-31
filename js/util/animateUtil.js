@@ -3,11 +3,11 @@ drill.define(async () => {
         // 主体animation
         animation: [],
         // 获取相应animation的提前设置样式对象
-        getInitCSS(animateName) {
-            animationUtil.animation.forEach(e => {
-                debugger
-            });
-        },
+        // getInitCSS(animateName) {
+        //     animationUtil.animation.forEach(e => {
+        //         debugger
+        //     });
+        // },
         // 转换frame对象成样式字符串
         frameToStr(frame) {
             let str = "";
@@ -101,6 +101,7 @@ drill.define(async () => {
                 let cssStr = '';
 
                 if (e.css) {
+                    debugger
                     Object.keys(e.css).forEach(k => {
                         let val = e.css[k];
                         cssStr += `${k}:${val};`;
@@ -110,6 +111,7 @@ drill.define(async () => {
                 // 添加生成class
                 str += `.${e.name}{
                     ${cssStr}
+                    -webkit-animation:${e.name} ease .5s;
                     animation:${e.name} ease .5s;
                 }
                 `;

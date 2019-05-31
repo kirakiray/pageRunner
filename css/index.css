@@ -46,11 +46,11 @@ body > [p-custom] {
 }
 .p_main > .page[active="1"] {
   display: block;
-  z-index: 3;
+  z-index: 2;
 }
 .p_main > .page[active="2"] {
   display: block;
-  z-index: 2;
+  z-index: 3;
 }
 .p_main .p_ele_outer {
   position: absolute;
@@ -103,11 +103,11 @@ body > [p-custom] {
 }
 .mainLoading > .page[active="1"] {
   display: block;
-  z-index: 3;
+  z-index: 2;
 }
 .mainLoading > .page[active="2"] {
   display: block;
-  z-index: 2;
+  z-index: 3;
 }
 .mainLoading .p_ele_outer {
   position: absolute;

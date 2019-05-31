@@ -21,6 +21,9 @@ drill.define(async (load) => {
             // 获取下一页
             let nextPage = $('.p_main .page').eq(pageId);
 
+            let activePageData = activePage.prop("pageData");
+            let nextPageData = nextPage.prop("pageData");
+
             if (!nextPage.length || activeId == pageId) {
                 return;
             }
@@ -28,15 +31,23 @@ drill.define(async (load) => {
             // 下一页设置状态修正
             nextPage.attr("active", 2);
             nextPage.css("transform", "");
+            nextPage.css("opacity", "");
 
             let transStr;
             if (activeId > pageId) {
-                transStr = dataUtil.getTransformStr(activePage.prop("pageData").pos2.transform);
-            } else {
-                transStr = dataUtil.getTransformStr(activePage.prop("pageData").pos1.transform);
-            }
+                transStr = dataUtil.getTransformStr(activePageData.pos2.transform);
+                activePage.css({
+                    "transform": transStr,
+                    opacity: activePageData.pos2.opacity
+                });
 
-            activePage.css("transform", transStr);
+            } else {
+                transStr = dataUtil.getTransformStr(activePageData.pos1.transform);
+                activePage.css({
+                    "transform": transStr,
+                    opacity: activePageData.pos1.opacity
+                });
+            }
 
             isRunAnime = 1;
 

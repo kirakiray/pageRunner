@@ -21,11 +21,13 @@ drill.init(async (load, {
             $page.css("transform", "");
         } else if (pageId < initActiveId) {
             $page.css({
-                "transform": dataUtil.getTransformStr(pageData.pos1.transform)
+                "transform": dataUtil.getTransformStr(pageData.pos1.transform),
+                opacity: pageData.pos1.opacity
             });
         } else {
             $page.css({
-                "transform": dataUtil.getTransformStr(pageData.pos2.transform)
+                "transform": dataUtil.getTransformStr(pageData.pos2.transform),
+                opacity: pageData.pos2.opacity
             });
         }
     });

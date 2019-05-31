@@ -35,6 +35,9 @@ drill.define(function () {
                             // 获取下一页
                             var nextPage = $('.p_main .page').eq(pageId);
 
+                            var activePageData = activePage.prop("pageData");
+                            var nextPageData = nextPage.prop("pageData");
+
                             if (!nextPage.length || activeId == pageId) {
                                 return;
                             }
@@ -42,15 +45,22 @@ drill.define(function () {
                             // 下一页设置状态修正
                             nextPage.attr("active", 2);
                             nextPage.css("transform", "");
+                            nextPage.css("opacity", "");
 
                             var transStr = void 0;
                             if (activeId > pageId) {
-                                transStr = dataUtil.getTransformStr(activePage.prop("pageData").pos2.transform);
+                                transStr = dataUtil.getTransformStr(activePageData.pos2.transform);
+                                activePage.css({
+                                    "transform": transStr,
+                                    opacity: activePageData.pos2.opacity
+                                });
                             } else {
-                                transStr = dataUtil.getTransformStr(activePage.prop("pageData").pos1.transform);
+                                transStr = dataUtil.getTransformStr(activePageData.pos1.transform);
+                                activePage.css({
+                                    "transform": transStr,
+                                    opacity: activePageData.pos1.opacity
+                                });
                             }
-
-                            activePage.css("transform", transStr);
 
                             isRunAnime = 1;
 
