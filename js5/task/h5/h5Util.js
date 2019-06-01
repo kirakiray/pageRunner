@@ -48,12 +48,12 @@ drill.define(function () {
 
                             if (activeId > pageId) {
                                 // 是返回操作
-                                activePage.css(animationCSSUtil.toCSSObj(activePageData.pos2_after));
-                                nextPage.css(animationCSSUtil.toCSSObj(nextPageData.pos1_after));
-                            } else {
-                                // 是前进操作
                                 activePage.css(animationCSSUtil.toCSSObj(activePageData.pos1));
                                 nextPage.css(animationCSSUtil.toCSSObj(nextPageData.pos2));
+                            } else {
+                                // 是前进操作
+                                activePage.css(animationCSSUtil.toCSSObj(activePageData.pos2_after));
+                                nextPage.css(animationCSSUtil.toCSSObj(nextPageData.pos1_after));
                             }
 
                             isRunAnime = 1;

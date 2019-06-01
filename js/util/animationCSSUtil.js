@@ -79,7 +79,7 @@ define(async (load) => {
                 str += keyframes;
                 str += `
                 .${e.animateId}{
-                    animation:${e.animateId} ease .5s;
+                    animation:${e.animateId} ease-in-out .5s;
                     animation-fill-mode: forwards;
                 }
                 `;

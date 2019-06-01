@@ -44,9 +44,9 @@ drill.init(function () {
                                 // 清空transform
                                 $page.css(animationCSSUtil.toCSSObj(pageData.pos1_after));
                             } else if (pageId < initActiveId) {
-                                $page.css(animationCSSUtil.toCSSObj(pageData.pos1));
-                            } else {
                                 $page.css(animationCSSUtil.toCSSObj(pageData.pos2_after));
+                            } else {
+                                $page.css(animationCSSUtil.toCSSObj(pageData.pos1));
                             }
                         });
 

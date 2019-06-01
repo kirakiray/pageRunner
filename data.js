@@ -46,22 +46,18 @@ define({
         }
     }, {
         "type": "animeIn",
-        "name": "animate_rotate6to9fade_in",
-        "animateId": "animate_rotate6to9fade_in",
+        "name": "animate_bottom_fade_move_in",
+        "animateId": "animate_bottom_fade_move_in",
         "animation": {
-            "0": {
-                "transform-origin": "100% 50% 0",
+            "from": {
                 "opacity": 0,
                 "transform": {
-                    "rotate": "-90deg"
+                    "translateY": "100%"
                 }
             },
-            "100": {
-                "transform-origin": "100% 50% 0",
+            "to": {
                 "opacity": 1,
-                "transform": {
-                    "rotate": "0deg"
-                }
+                "transform": ""
             }
         }
     }, {
@@ -98,24 +94,28 @@ define({
         }
     }, {
         "type": "animeIn",
-        "name": "animate_top_fade_move_in",
-        "animateId": "animate_top_fade_move_in",
+        "name": "animate_rotate6to9fade_in",
+        "animateId": "animate_rotate6to9fade_in",
         "animation": {
-            "from": {
+            "0": {
+                "transform-origin": "100% 50% 0",
                 "opacity": 0,
                 "transform": {
-                    "translateY": "-100%"
+                    "rotate": "-90deg"
                 }
             },
-            "to": {
+            "100": {
+                "transform-origin": "100% 50% 0",
                 "opacity": 1,
-                "transform": ""
+                "transform": {
+                    "rotate": "0deg"
+                }
             }
         }
     }, {
         "type": "animeOut",
-        "name": "animate_bottom_fade_move_out",
-        "animateId": "animate_bottom_fade_move_out",
+        "name": "animate_top_fade_move_out",
+        "animateId": "animate_top_fade_move_out",
         "animation": {
             "from": {
                 "opacity": 1,
@@ -124,7 +124,7 @@ define({
             "to": {
                 "opacity": 0,
                 "transform": {
-                    "translateY": "100%"
+                    "translateY": "-100%"
                 }
             }
         }
@@ -192,7 +192,7 @@ define({
             "1": {
                 "tag": "pic",
                 "pname": "index_summary",
-                "selected": 1,
+                "selected": 0,
                 "layerele": "",
                 "picUrl": "source/img_1558880538659.png",
                 "picWidth": 1141,
@@ -305,9 +305,9 @@ define({
             "selected": 0,
             "layerele": "",
             "pageIn": "animate_fade_in",
-            "pageOut": "animate_bottom_fade_move_out",
-            "removeInOpa": true,
-            "removeOutOpa": true,
+            "pageOut": "animate_top_fade_move_out",
+            "removeInOpa": false,
+            "removeOutOpa": false,
             "background-image": "",
             "background-color": "",
             "background-size": "",
@@ -318,7 +318,7 @@ define({
             "textAlign": "",
             "textDecoration": "",
             "fontStyle": "",
-            "runAnime": 0,
+            "runAnime": false,
             "runOutAnime": 0
         },
         "1": {
@@ -340,7 +340,7 @@ define({
                 "x": "-0.078%",
                 "y": "-19.028%",
                 "w": "47.188%",
-                "h": "43.377bw",
+                "h": "43.53bw",
                 "background-image": "",
                 "background-color": "",
                 "background-size": "",
@@ -369,11 +369,11 @@ define({
                 "target": "safe",
                 "hor": "center",
                 "ver": "center",
-                "x": "-132.006px",
-                "y": "228.002px",
-                "w": "375px",
-                "h": "109px",
-                "fontSize": "29.411px",
+                "x": "-10.313%",
+                "y": "31.667%",
+                "w": "29.297%",
+                "h": "29.067bw",
+                "fontSize": "7.843bw",
                 "lineHeight": "1.6em",
                 "letterSpacing": "0em",
                 "textAlign": "left",
@@ -386,8 +386,8 @@ define({
                 "background-size": "",
                 "background-position": "",
                 "background-repeat": "",
-                "lockbox": "",
-                "locksize": "",
+                "lockbox": 1,
+                "locksize": 1,
                 "xvele": 1,
                 "selected": 0,
                 "inName": "小米首款 20W 无...",
@@ -407,11 +407,11 @@ define({
                 "target": "safe",
                 "hor": "center",
                 "ver": "center",
-                "x": "33px",
-                "y": "108px",
-                "w": "709px",
-                "h": "96px",
-                "fontSize": "16.002px",
+                "x": "2.578%",
+                "y": "15.000%",
+                "w": "55.391%",
+                "h": "13.399bw",
+                "fontSize": "2.257bw",
                 "lineHeight": "1.6em",
                 "letterSpacing": "0em",
                 "textAlign": "left",
@@ -424,8 +424,8 @@ define({
                 "background-size": "",
                 "background-position": "",
                 "background-repeat": "",
-                "lockbox": "",
-                "locksize": "",
+                "lockbox": 1,
+                "locksize": 1,
                 "xvele": 1,
                 "selected": 0,
                 "inName": "“放上去，就充电”很...",
@@ -435,7 +435,7 @@ define({
             "tag": "page",
             "pname": "page2",
             "xvele": 1,
-            "pageIn": "animate_rotate6to9fade_in",
+            "pageIn": "animate_bottom_fade_move_in",
             "pageOut": "animate_rotateXfade1_out",
             "removeInOpa": false,
             "removeOutOpa": false,
@@ -444,12 +444,12 @@ define({
             "background-size": "",
             "background-position": "",
             "background-repeat": "",
-            "selected": 0,
+            "selected": 1,
             "target": "",
             "textAlign": "",
             "textDecoration": "",
             "fontStyle": "",
-            "runAnime": 0,
+            "runAnime": false,
             "runOutAnime": 0
         },
         "2": {
@@ -490,10 +490,10 @@ define({
             "tag": "page",
             "pname": "page3",
             "xvele": 1,
-            "pageIn": "animate_top_fade_move_in",
-            "pageOut": "animate_bottom_fade_move_out",
-            "removeInOpa": true,
-            "removeOutOpa": true,
+            "pageIn": "animate_bottom_fade_move_in",
+            "pageOut": "animate_top_fade_move_out",
+            "removeInOpa": false,
+            "removeOutOpa": false,
             "background-image": "",
             "background-color": "",
             "background-size": "",
@@ -504,7 +504,62 @@ define({
             "textAlign": "",
             "textDecoration": "",
             "fontStyle": "",
-            "runAnime": 0,
+            "runAnime": false,
+            "runOutAnime": 0
+        },
+        "3": {
+            "0": {
+                "tag": "text",
+                "pname": "我是标题",
+                "intext": "我是标题",
+                "animateIn": "",
+                "animateOut": "",
+                "animateInTime": 0,
+                "animateOutTime": 0,
+                "animateInDelay": 0,
+                "preview": 1,
+                "target": "safe",
+                "hor": "center",
+                "ver": "center",
+                "x": "0px",
+                "y": "0px",
+                "w": "200px",
+                "h": "160px",
+                "fontSize": "16px",
+                "lineHeight": "1.6em",
+                "letterSpacing": "0em",
+                "textAlign": "left",
+                "textDecoration": "none",
+                "fontWeight": "normal",
+                "fontStyle": "normal",
+                "color": "#000000",
+                "background-image": "",
+                "background-color": "",
+                "background-size": "",
+                "background-position": "",
+                "background-repeat": "",
+                "lockbox": 0,
+                "locksize": 0,
+                "xvele": 1,
+                "selected": 0,
+                "inName": "我是标题",
+                "runAnime": 0,
+                "runOutAnime": 0
+            },
+            "tag": "page",
+            "pname": "page4",
+            "xvele": 1,
+            "pageIn": "animate_bottom_fade_move_in",
+            "pageOut": "animate_top_fade_move_out",
+            "removeInOpa": false,
+            "removeOutOpa": false,
+            "background-image": "",
+            "background-color": "",
+            "background-size": "",
+            "background-position": "",
+            "background-repeat": "",
+            "selected": 0,
+            "runAnime": false,
             "runOutAnime": 0
         },
         "w": "1280px",

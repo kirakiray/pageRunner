@@ -18,15 +18,12 @@
     }
 
     // 加载基础库
-    let [dataUtil, animateUtil] = await load("util/dataUtil", "util/animateUtil");
+    let dataUtil = await load("util/dataUtil");
 
     // 自定义数据
     if ($('[p-custom]').length) {
         await load("task/initCustomEle");
     }
-
-    // 设置初始animation
-    animateUtil.animation = data.animation;
 
     // 添加长度参数
     dataUtil.addLength(data);

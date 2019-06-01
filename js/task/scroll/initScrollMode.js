@@ -3,9 +3,6 @@ drill.init(async (load, {
 }) => {
     const [commonData, dataUtil, pageUtil] = await load("common/data", "util/dataUtil", "util/pageUtil");
 
-    // 初始化动画样式
-    pageUtil.initAnimeStyle();
-
     // 直接开始加载第一个
     let mainEle = $(".p_main");
 

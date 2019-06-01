@@ -25,9 +25,6 @@ drill.init(function () {
                         pageUtil = _ref4[2];
 
 
-                        // 初始化动画样式
-                        pageUtil.initAnimeStyle();
-
                         // 直接开始加载第一个
                         mainEle = $(".p_main");
                         pageFirst = mainEle.children().eq(initActiveId);
@@ -57,21 +54,21 @@ drill.init(function () {
 
                         // 点火第一个
 
-                        _context.next = 17;
+                        _context.next = 16;
                         return pageData.startLoad();
 
-                    case 17:
+                    case 16:
 
                         // 滚动到第一个页面的位置
                         mEle.scrollTop = mEle.offsetHeight * initActiveId;
 
                         // 等待300毫秒，等元素内Loading动画结束
-                        _context.next = 20;
+                        _context.next = 19;
                         return new Promise(function (res) {
                             return setTimeout(res, 300);
                         });
 
-                    case 20:
+                    case 19:
 
                         // 进行动画
                         pageUtil.runPageAnime(pageFirst);
@@ -101,7 +98,7 @@ drill.init(function () {
                             }
                         });
 
-                    case 23:
+                    case 22:
                     case "end":
                         return _context.stop();
                 }

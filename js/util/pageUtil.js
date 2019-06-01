@@ -1,23 +1,5 @@
 drill.define(async (load) => {
-    let [animateUtil, commonData] = await load("util/animateUtil", "common/data");
-
-    let isInitAnimeStyle = 0;
     let util = {
-        // 初始化页面动画样式
-        initAnimeStyle() {
-            if (isInitAnimeStyle) {
-                return;
-            }
-            isInitAnimeStyle = 1;
-
-            // 添加animation style
-            let animateCSSStr = animateUtil.animationToStr();
-
-            // 添加style
-            $('head').append(`
-            <style>${animateCSSStr}</style>
-            `);
-        },
         // 运行页面动画
         runPageAnime($page) {
             // 判断页面是否当前页，不是的话就别比比了

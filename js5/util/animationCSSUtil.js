@@ -79,7 +79,7 @@ define(function () {
                                     // 获取keyframes
                                     var keyframes = animationCSSUtil.transAnimation(e.animation, e.animateId);
                                     str += keyframes;
-                                    str += "\n                ." + e.animateId + "{\n                    animation:" + e.animateId + " ease .5s;\n                    animation-fill-mode: forwards;\n                }\n                ";
+                                    str += "\n                ." + e.animateId + "{\n                    animation:" + e.animateId + " ease-in-out .5s;\n                    animation-fill-mode: forwards;\n                }\n                ";
                                 });
 
                                 // 主体style
