@@ -6,20 +6,21 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
 drill.define(function () {
     var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(load) {
-        var _ref2, _ref3, dataUtil, commonData, isRunAnime, util;
+        var _ref2, _ref3, dataUtil, commonData, animationCSSUtil, isRunAnime, util;
 
         return regeneratorRuntime.wrap(function _callee$(_context) {
             while (1) {
                 switch (_context.prev = _context.next) {
                     case 0:
                         _context.next = 2;
-                        return load("util/dataUtil", "common/data");
+                        return load("util/dataUtil", "common/data", "util/animationCSSUtil");
 
                     case 2:
                         _ref2 = _context.sent;
-                        _ref3 = _slicedToArray(_ref2, 2);
+                        _ref3 = _slicedToArray(_ref2, 3);
                         dataUtil = _ref3[0];
                         commonData = _ref3[1];
+                        animationCSSUtil = _ref3[2];
                         isRunAnime = 0;
 
                         _context.t0 = function toPage(pageId) {
@@ -35,31 +36,24 @@ drill.define(function () {
                             // 获取下一页
                             var nextPage = $('.p_main .page').eq(pageId);
 
-                            var activePageData = activePage.prop("pageData");
-                            var nextPageData = nextPage.prop("pageData");
-
                             if (!nextPage.length || activeId == pageId) {
                                 return;
                             }
 
+                            var activePageData = activePage.prop("pageData");
+                            var nextPageData = nextPage.prop("pageData");
+
                             // 下一页设置状态修正
                             nextPage.attr("active", 2);
-                            nextPage.css("transform", "");
-                            nextPage.css("opacity", "");
 
-                            var transStr = void 0;
                             if (activeId > pageId) {
-                                transStr = dataUtil.getTransformStr(activePageData.pos2.transform);
-                                activePage.css({
-                                    "transform": transStr,
-                                    opacity: activePageData.pos2.opacity
-                                });
+                                // 是返回操作
+                                activePage.css(animationCSSUtil.toCSSObj(activePageData.pos2_after));
+                                nextPage.css(animationCSSUtil.toCSSObj(nextPageData.pos1_after));
                             } else {
-                                transStr = dataUtil.getTransformStr(activePageData.pos1.transform);
-                                activePage.css({
-                                    "transform": transStr,
-                                    opacity: activePageData.pos1.opacity
-                                });
+                                // 是前进操作
+                                activePage.css(animationCSSUtil.toCSSObj(activePageData.pos1));
+                                nextPage.css(animationCSSUtil.toCSSObj(nextPageData.pos2));
                             }
 
                             isRunAnime = 1;
@@ -116,7 +110,7 @@ drill.define(function () {
                         };
                         return _context.abrupt("return", util);
 
-                    case 12:
+                    case 13:
                     case "end":
                         return _context.stop();
                 }

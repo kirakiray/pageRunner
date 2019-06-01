@@ -8,21 +8,23 @@ drill.init(function () {
     var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(load, _ref2) {
         var initActiveId = _ref2.initActiveId;
 
-        var _ref3, _ref4, commonData, dataUtil, pageUtil, tarPage, targetPageData;
+        var _ref3, _ref4, commonData, dataUtil, pageUtil, animationCSSUtil, rData, tarPage, targetPageData;
 
         return regeneratorRuntime.wrap(function _callee$(_context) {
             while (1) {
                 switch (_context.prev = _context.next) {
                     case 0:
                         _context.next = 2;
-                        return load("common/data", "util/dataUtil", "util/pageUtil");
+                        return load("common/data", "util/dataUtil", "util/pageUtil", "util/animationCSSUtil", "data -r");
 
                     case 2:
                         _ref3 = _context.sent;
-                        _ref4 = _slicedToArray(_ref3, 3);
+                        _ref4 = _slicedToArray(_ref3, 5);
                         commonData = _ref4[0];
                         dataUtil = _ref4[1];
                         pageUtil = _ref4[2];
+                        animationCSSUtil = _ref4[3];
+                        rData = _ref4[4];
 
 
                         // 添加相应的active
@@ -40,29 +42,22 @@ drill.init(function () {
                             // 提前设置样式
                             if (pageId == initActiveId) {
                                 // 清空transform
-                                $page.css("transform", "");
+                                $page.css(animationCSSUtil.toCSSObj(pageData.pos1_after));
                             } else if (pageId < initActiveId) {
-                                $page.css({
-                                    "transform": dataUtil.getTransformStr(pageData.pos1.transform),
-                                    opacity: pageData.pos1.opacity
-                                });
+                                $page.css(animationCSSUtil.toCSSObj(pageData.pos1));
                             } else {
-                                $page.css({
-                                    "transform": dataUtil.getTransformStr(pageData.pos2.transform),
-                                    opacity: pageData.pos2.opacity
-                                });
+                                $page.css(animationCSSUtil.toCSSObj(pageData.pos2_after));
                             }
                         });
 
                         // 初始化页面切换效果控件
-                        _context.next = 10;
+                        _context.next = 12;
                         return load("task/h5/initPageSwiper");
 
-                    case 10:
+                    case 12:
 
-                        // 初始化页面元素的的动画交互
-                        // 添加初始动画样式
-                        pageUtil.initAnimeStyle();
+                        // 初始化页面元素的的动画样式
+                        animationCSSUtil.initAnimation(rData.animation);
 
                         commonData.on("changePageStart", function (e, data) {
                             var activePage = data.activePage,
@@ -86,28 +81,28 @@ drill.init(function () {
 
                         // 根据initActiveId点火
 
-                        _context.next = 17;
+                        _context.next = 19;
                         return targetPageData.startLoad();
 
-                    case 17:
+                    case 19:
 
                         // 清空状态
                         pageUtil.clearPageAnime(tarPage);
 
                         // 等待200毫秒，page上的loading消失
-                        _context.next = 20;
+                        _context.next = 22;
                         return new Promise(function (res) {
                             return setTimeout(function () {
                                 return res();
                             }, 200);
                         });
 
-                    case 20:
+                    case 22:
 
                         // 加载完成后进行初始动画
                         pageUtil.runPageAnime(tarPage);
 
-                    case 21:
+                    case 23:
                     case "end":
                         return _context.stop();
                 }

@@ -10,6 +10,7 @@ drill.define(async () => {
         // },
         // 转换frame对象成样式字符串
         frameToStr(frame) {
+            debugger
             let str = "";
             Object.keys(frame).forEach(k => {
                 if (k === "transform") {

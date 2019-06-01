@@ -1,7 +1,7 @@
 drill.init(async (load, {
     initActiveId
 }) => {
-    const [commonData, dataUtil, pageUtil] = await load("common/data", "util/dataUtil", "util/pageUtil");
+    const [commonData, dataUtil, pageUtil, animationCSSUtil, rData] = await load("common/data", "util/dataUtil", "util/pageUtil", "util/animationCSSUtil", "data -r");
 
     // 添加相应的active
     $(".p_main > .page").each((pageId, e) => {
@@ -18,26 +18,19 @@ drill.init(async (load, {
         // 提前设置样式
         if (pageId == initActiveId) {
             // 清空transform
-            $page.css("transform", "");
+            $page.css(animationCSSUtil.toCSSObj(pageData.pos1_after));
         } else if (pageId < initActiveId) {
-            $page.css({
-                "transform": dataUtil.getTransformStr(pageData.pos1.transform),
-                opacity: pageData.pos1.opacity
-            });
+            $page.css(animationCSSUtil.toCSSObj(pageData.pos1));
         } else {
-            $page.css({
-                "transform": dataUtil.getTransformStr(pageData.pos2.transform),
-                opacity: pageData.pos2.opacity
-            });
+            $page.css(animationCSSUtil.toCSSObj(pageData.pos2_after));
         }
     });
 
     // 初始化页面切换效果控件
     await load("task/h5/initPageSwiper");
 
-    // 初始化页面元素的的动画交互
-    // 添加初始动画样式
-    pageUtil.initAnimeStyle();
+    // 初始化页面元素的的动画样式
+    animationCSSUtil.initAnimation(rData.animation);
 
     commonData.on("changePageStart", (e, data) => {
         let {

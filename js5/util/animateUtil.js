@@ -19,6 +19,7 @@ drill.define(_asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _c
                         // },
                         // 转换frame对象成样式字符串
                         frameToStr: function frameToStr(frame) {
+                            debugger;
                             var str = "";
                             Object.keys(frame).forEach(function (k) {
                                 if (k === "transform") {
