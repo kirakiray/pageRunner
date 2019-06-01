@@ -67,20 +67,18 @@ drill.define(function (load) {
                 throw "has not this pageOut anime => " + pageOut;
             }
 
-            // e.pos1 = Object.assign({}, pageInAnime.frame);
-            // e.pos2 = Object.assign({}, pageOutAnime.frame);
             e.pos1 = Object.assign({}, pageInAnime.animation.from || pageInAnime.animation[0]);
             e.pos1_after = Object.assign({}, pageInAnime.animation.to || pageInAnime.animation[100]);
             e.pos2 = Object.assign({}, pageOutAnime.animation.from || pageOutAnime.animation[0]);
             e.pos2_after = Object.assign({}, pageOutAnime.animation.to || pageOutAnime.animation[100]);
 
             // 判断是否去除透明度
-            // if (e.removeInOpa) {
-            //     e.pos1.opacity = 1;
-            // }
-            // if (e.removeOutOpa) {
-            //     e.pos2.opacity = 1;
-            // }
+            if (e.removeInOpa) {
+                e.pos1.opacity = 1;
+            }
+            if (e.removeOutOpa) {
+                e.pos2_after.opacity = 1;
+            }
 
             // 设置子元素的动画
             Array.from(e).forEach(function (c) {

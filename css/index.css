@@ -50,7 +50,7 @@ body > [p-custom] {
 }
 .p_main > .page[active="2"] {
   display: block;
-  z-index: 3;
+  z-index: 1;
 }
 .p_main .p_ele_outer {
   position: absolute;
@@ -107,7 +107,7 @@ body > [p-custom] {
 }
 .mainLoading > .page[active="2"] {
   display: block;
-  z-index: 3;
+  z-index: 1;
 }
 .mainLoading .p_ele_outer {
   position: absolute;
