@@ -1,7 +1,7 @@
 drill.init(async (load, {
     initActiveId
 }) => {
-    const [commonData, dataUtil, pageUtil, animationCSSUtil, rData] = await load("common/data", "util/dataUtil", "util/pageUtil", "util/animationCSSUtil", "data -r");
+    const [commonData, pageUtil, animationCSSUtil, rData] = await load("common/data", "util/pageUtil", "util/animationCSSUtil", "data -r");
 
     // 添加相应的active
     $(".p_main > .page").each((pageId, e) => {

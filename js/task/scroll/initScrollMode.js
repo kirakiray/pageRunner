@@ -1,7 +1,10 @@
 drill.init(async (load, {
     initActiveId
 }) => {
-    const [commonData, dataUtil, pageUtil] = await load("common/data", "util/dataUtil", "util/pageUtil");
+    const [commonData, animationCSSUtil, pageUtil, rData] = await load("common/data", "util/animationCSSUtil", "util/pageUtil", "data -r");
+
+    // 初始化页面元素的的动画样式
+    animationCSSUtil.initAnimation(rData.animation);
 
     // 直接开始加载第一个
     let mainEle = $(".p_main");

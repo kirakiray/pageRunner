@@ -8,22 +8,26 @@ drill.init(function () {
     var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(load, _ref2) {
         var initActiveId = _ref2.initActiveId;
 
-        var _ref3, _ref4, commonData, dataUtil, pageUtil, mainEle, pageFirst, pageData, runAnimeSetter, mEle, mTimer;
+        var _ref3, _ref4, commonData, animationCSSUtil, pageUtil, rData, mainEle, pageFirst, pageData, runAnimeSetter, mEle, mTimer;
 
         return regeneratorRuntime.wrap(function _callee$(_context) {
             while (1) {
                 switch (_context.prev = _context.next) {
                     case 0:
                         _context.next = 2;
-                        return load("common/data", "util/dataUtil", "util/pageUtil");
+                        return load("common/data", "util/animationCSSUtil", "util/pageUtil", "data -r");
 
                     case 2:
                         _ref3 = _context.sent;
-                        _ref4 = _slicedToArray(_ref3, 3);
+                        _ref4 = _slicedToArray(_ref3, 4);
                         commonData = _ref4[0];
-                        dataUtil = _ref4[1];
+                        animationCSSUtil = _ref4[1];
                         pageUtil = _ref4[2];
+                        rData = _ref4[3];
 
+
+                        // 初始化页面元素的的动画样式
+                        animationCSSUtil.initAnimation(rData.animation);
 
                         // 直接开始加载第一个
                         mainEle = $(".p_main");
@@ -54,21 +58,21 @@ drill.init(function () {
 
                         // 点火第一个
 
-                        _context.next = 16;
+                        _context.next = 18;
                         return pageData.startLoad();
 
-                    case 16:
+                    case 18:
 
                         // 滚动到第一个页面的位置
                         mEle.scrollTop = mEle.offsetHeight * initActiveId;
 
                         // 等待300毫秒，等元素内Loading动画结束
-                        _context.next = 19;
+                        _context.next = 21;
                         return new Promise(function (res) {
                             return setTimeout(res, 300);
                         });
 
-                    case 19:
+                    case 21:
 
                         // 进行动画
                         pageUtil.runPageAnime(pageFirst);
@@ -98,7 +102,7 @@ drill.init(function () {
                             }
                         });
 
-                    case 22:
+                    case 24:
                     case "end":
                         return _context.stop();
                 }

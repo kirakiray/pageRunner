@@ -8,23 +8,22 @@ drill.init(function () {
     var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(load, _ref2) {
         var initActiveId = _ref2.initActiveId;
 
-        var _ref3, _ref4, commonData, dataUtil, pageUtil, animationCSSUtil, rData, tarPage, targetPageData;
+        var _ref3, _ref4, commonData, pageUtil, animationCSSUtil, rData, tarPage, targetPageData;
 
         return regeneratorRuntime.wrap(function _callee$(_context) {
             while (1) {
                 switch (_context.prev = _context.next) {
                     case 0:
                         _context.next = 2;
-                        return load("common/data", "util/dataUtil", "util/pageUtil", "util/animationCSSUtil", "data -r");
+                        return load("common/data", "util/pageUtil", "util/animationCSSUtil", "data -r");
 
                     case 2:
                         _ref3 = _context.sent;
-                        _ref4 = _slicedToArray(_ref3, 5);
+                        _ref4 = _slicedToArray(_ref3, 4);
                         commonData = _ref4[0];
-                        dataUtil = _ref4[1];
-                        pageUtil = _ref4[2];
-                        animationCSSUtil = _ref4[3];
-                        rData = _ref4[4];
+                        pageUtil = _ref4[1];
+                        animationCSSUtil = _ref4[2];
+                        rData = _ref4[3];
 
 
                         // 添加相应的active
@@ -51,10 +50,10 @@ drill.init(function () {
                         });
 
                         // 初始化页面切换效果控件
-                        _context.next = 12;
+                        _context.next = 11;
                         return load("task/h5/initPageSwiper");
 
-                    case 12:
+                    case 11:
 
                         // 初始化页面元素的的动画样式
                         animationCSSUtil.initAnimation(rData.animation);
@@ -81,28 +80,28 @@ drill.init(function () {
 
                         // 根据initActiveId点火
 
-                        _context.next = 19;
+                        _context.next = 18;
                         return targetPageData.startLoad();
 
-                    case 19:
+                    case 18:
 
                         // 清空状态
                         pageUtil.clearPageAnime(tarPage);
 
                         // 等待200毫秒，page上的loading消失
-                        _context.next = 22;
+                        _context.next = 21;
                         return new Promise(function (res) {
                             return setTimeout(function () {
                                 return res();
                             }, 200);
                         });
 
-                    case 22:
+                    case 21:
 
                         // 加载完成后进行初始动画
                         pageUtil.runPageAnime(tarPage);
 
-                    case 23:
+                    case 22:
                     case "end":
                         return _context.stop();
                 }
