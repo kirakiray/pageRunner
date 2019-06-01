@@ -8,7 +8,7 @@
 
     // 给外部用的对象，内部模块别使用该对象
     window.pageRunner = {
-        v: "10000",
+        v: "10100",
         data,
         commonData
     };
