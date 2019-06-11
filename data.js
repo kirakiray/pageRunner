@@ -566,7 +566,8 @@ define({
         "h": "720px",
         "inselected": "",
         "pageType": "mainPage",
-        "type": "h5",
+        "type": "ppt",
+        // "type": "h5",
         "width": 1280,
         "height": 720
     }

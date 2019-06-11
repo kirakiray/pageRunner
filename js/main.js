@@ -69,6 +69,11 @@
                 initActiveId
             });
             break;
+        case "ppt":
+            await load("task/ppt/initPPTMode").post({
+                initActiveId
+            });
+            break;
         case "h5":
         default:
             // 默认走h5类型
