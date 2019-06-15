@@ -1,5 +1,31 @@
 drill.define(async (load) => {
     let util = {
+        runEleAnime(ele, eleData, options = {}) {
+            // 判断是否有animateIn
+            if (eleData.animateIn) {
+                // 添加动画class
+                ele.addClass(eleData.animateIn);
+
+                let {
+                    animateInTime,
+                    animateInDelay
+                } = eleData;
+
+                if (options.noDelay) {
+                    animateInDelay = 0;
+                }
+
+                // 设置动画
+                ele.css({
+                    "animation-duration": `${animateInTime}s`,
+                    "animation-delay": `${animateInDelay}s`,
+                    "animation-fill-mode": "both"
+                });
+
+                // 去掉透明度
+                ele.css("opacity", "");
+            }
+        },
         // 运行页面动画
         runPageAnime($page) {
             // 判断页面是否当前页，不是的话就别比比了
@@ -20,21 +46,7 @@ drill.define(async (load) => {
                     eleData
                 } = e;
 
-                // 判断是否有animateIn
-                if (eleData.animateIn) {
-                    // 添加动画class
-                    ele.addClass(eleData.animateIn);
-
-                    // 设置动画
-                    ele.css({
-                        "animation-duration": eleData.animateInTime + "s",
-                        "animation-delay": `${eleData.animateInDelay}s`,
-                        "animation-fill-mode": "both"
-                    });
-
-                    // 去掉透明度
-                    ele.css("opacity", "");
-                }
+                util.runEleAnime(ele, eleData);
             });
         },
         // 去除页面动画元素的终结状态

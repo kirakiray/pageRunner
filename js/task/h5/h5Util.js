@@ -35,7 +35,6 @@ drill.define(async (load) => {
                 // 是返回操作
                 activePage.css(animationCSSUtil.toCSSObj(activePageData.pos1));
                 nextPage.css(animationCSSUtil.toCSSObj(nextPageData.pos2));
-
             } else {
                 // 是前进操作
                 activePage.css(animationCSSUtil.toCSSObj(activePageData.pos2_after));

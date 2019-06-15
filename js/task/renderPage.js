@@ -5,6 +5,9 @@ drill.init(async (load, d) => {
         data
     } = d;
 
+    // 计数器
+    let count = 50;
+
     let [viewUtil, cacheUtil, commonData] = await load("util/viewUtil", "util/cacheUtil", "common/data");
 
     // 设置通用css
@@ -23,8 +26,11 @@ drill.init(async (load, d) => {
     // 填充子元素
     const addEles = (page, p) => {
         Array.from(p).forEach(e => {
+            let outerId = count++;
+            e.outerId = outerId;
+
             let ele = $(`
-            <div class="p_ele_outer" style="opacity:0;" ver="${e.ver}" hor="${e.hor}">
+            <div class="p_ele_outer" style="opacity:0;" ver="${e.ver}" hor="${e.hor}" outer-id="${outerId}">
                 <div class="p_ele"></div>
             </div>`);
 
@@ -32,6 +38,7 @@ drill.init(async (load, d) => {
             setTimeout(() => {
                 ele.css("opacity", "");
             }, 50);
+
 
             // 添加元素数据
             ele.prop("eleData", e);

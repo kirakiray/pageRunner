@@ -4,6 +4,7 @@ drill.task(async (load, data) => {
     } = data;
 
     const [commonData, animationCSSUtil, pageUtil, rData] = await load("common/data", "util/animationCSSUtil", "util/pageUtil", "data -r");
+    const h5Util = await load("../h5/h5Util");
 
     // 初始化页面元素的的动画样式
     animationCSSUtil.initAnimation(rData.animation);
@@ -17,8 +18,6 @@ drill.task(async (load, data) => {
     commonData.on("pageLoaded", (e, d) => {
         // 清空内元素进行动画
         pageUtil.clearPageAnime(d.page);
-
-        console.log(d);
     });
 
     // 点火第一个
@@ -60,13 +59,8 @@ drill.task(async (load, data) => {
         let cKeysObj = {};
         let cKeys = new Set();
 
-        // 子元素排序
-        $page.children().each((i, e) => {
-            let {
-                eleData
-            } = e;
-
-            if (eleData) {
+        Array.from(pageData).forEach(eleData => {
+            if (eleData && eleData.animateIn) {
                 // 添加key
                 cKeys.add(eleData.animateInDelay);
 
@@ -77,7 +71,6 @@ drill.task(async (load, data) => {
 
                 tarGroupObj.arr.push({
                     type: "ele",
-                    ele: e,
                     data: eleData
                 });
             }
@@ -92,6 +85,39 @@ drill.task(async (load, data) => {
             sarr.push(cKeysObj[kid]);
         });
     });
+
+    console.log(sarr, commonData);
+
+    let arrId = 0;
+
+    mainEle.on("click", e => {
+        runAnime();
+    });
+
+    let runAnime = () => {
+        // 递增序号
+        arrId++;
+
+        let tarObj = sarr[arrId];
+
+        if (tarObj) {
+            switch (tarObj.type) {
+                case "group":
+                    tarObj.arr.forEach(e => {
+                        pageUtil.runEleAnime($(`[outer-id="${e.data.outerId}"] .p_ele`), e.data, {
+                            noDelay: 1
+                        });
+                    });
+                    break;
+                case "page":
+                    h5Util.toNextPage();
+                    break;
+            }
+        } else {
+            console.log('最后一页了');
+        }
+
+    }
 
     // pageUtil.runPageAnime(pageFirst);
 });
