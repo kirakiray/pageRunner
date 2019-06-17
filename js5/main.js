@@ -26,7 +26,7 @@ _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
 
                     // 给外部用的对象，内部模块别使用该对象
                     window.pageRunner = {
-                        v: "10201",
+                        v: "10300",
                         data: data,
                         commonData: commonData
                     };
