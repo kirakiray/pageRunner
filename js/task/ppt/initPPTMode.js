@@ -119,5 +119,15 @@ drill.task(async (load, data) => {
 
     }
 
+    window.addEventListener("message", e => {
+        let {
+            data
+        } = e;
+
+        if (data.type === "pptModeCommond") {
+            console.log(data);
+        }
+    });
+
     // pageUtil.runPageAnime(pageFirst);
 });
