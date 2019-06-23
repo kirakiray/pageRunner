@@ -20,6 +20,7 @@ drill.define(async (load) => {
                     ele.css({
                         "animation-duration": `${animateInTime}s`,
                         "animation-delay": `${animateInDelay}s`,
+                        "animation-fill-mode": "both"
                     });
                 } else {
                     ele.css({
