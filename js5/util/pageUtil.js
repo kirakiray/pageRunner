@@ -26,12 +26,18 @@ drill.define(function () {
                                         animateInDelay = 0;
                                     }
 
-                                    // 设置动画
-                                    ele.css({
-                                        "animation-duration": animateInTime + "s",
-                                        "animation-delay": animateInDelay + "s",
-                                        "animation-fill-mode": "both"
-                                    });
+                                    if (!options.noAnime) {
+                                        // 设置动画
+                                        ele.css({
+                                            "animation-duration": animateInTime + "s",
+                                            "animation-delay": animateInDelay + "s",
+                                            "animation-fill-mode": "both"
+                                        });
+                                    } else {
+                                        ele.css({
+                                            "animation-duration": "0s"
+                                        });
+                                    }
 
                                     // 去掉透明度
                                     ele.css("opacity", "");

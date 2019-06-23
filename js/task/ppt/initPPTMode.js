@@ -12,6 +12,8 @@ drill.task(async (load, data) => {
     // 直接开始加载第一个
     let mainEle = $(".p_main");
 
+    console.log(initActiveId);
+
     let pageFirst = mainEle.children().eq(initActiveId);
     let pageData = pageFirst.prop("pageData");
 
@@ -21,7 +23,8 @@ drill.task(async (load, data) => {
     });
 
     // 点火第一个
-    await pageData.startLoad();
+    // await pageData.startLoad();
+    pageData.startLoad();
 
     // 所有元素的进场序列
     let sarr = [];
@@ -88,13 +91,17 @@ drill.task(async (load, data) => {
 
     console.log(sarr, commonData);
 
+    // 计算的进行id
     let arrId = 0;
 
     mainEle.on("click", e => {
         runAnime();
     });
 
-    let runAnime = () => {
+    // 已经加载完成的pageId
+    // let pageLoadedId = [];
+
+    let runAnime = (opt = {}) => {
         // 递增序号
         arrId++;
 
@@ -105,29 +112,71 @@ drill.task(async (load, data) => {
                 case "group":
                     tarObj.arr.forEach(e => {
                         pageUtil.runEleAnime($(`[outer-id="${e.data.outerId}"] .p_ele`), e.data, {
-                            noDelay: 1
+                            noDelay: 1,
+                            noAnime: opt.noAnime
                         });
                     });
                     break;
                 case "page":
-                    h5Util.toNextPage();
+                    h5Util.toPage($(tarObj.ele).index());
                     break;
             }
         } else {
             console.log('最后一页了');
         }
 
+        console.log("arrId => ", arrId);
     }
 
-    window.addEventListener("message", e => {
+    window.addEventListener("message", async e => {
         let {
             data
         } = e;
 
         if (data.type === "pptModeCommond") {
+            let {
+                rid
+            } = data;
+
+            let tarPageId = rid;
+
+            // 判断是否page元素，不是的话就向前溯源，找到page并切换到page，在加载到当前的元素
+            let tarData = sarr[rid];
+
+            while (tarData.type !== "page") {
+                tarData = sarr[--tarPageId];
+            }
+
+            // 进行缓存
+            await tarData.data.startLoad();
+
+            // let startPageId = sarr.indexOf(tarData);
+
+            // 向前跳，并进行nextPage
+            arrId = rid - 1;
+            runAnime();
+
+            tarPageId++;
+            // 进行到相应位置
+            for (; tarPageId < rid; tarPageId++) {
+                sarr[tarPageId].arr.forEach(e => {
+                    pageUtil.runEleAnime($(`[outer-id="${e.data.outerId}"] .p_ele`), e.data, {
+                        noDelay: 1,
+                        noAnime: true
+                    });
+                });
+            }
+
+            // arrId = data.rid;
             console.log(data);
         }
     });
+
+    // 查看页面是否缓存完毕
+    // commonData.on("pageLoaded", (e, data) => {
+    //     pageLoadedId.push(data.pageId);
+    //     console.log(data);
+    // });
 
     // pageUtil.runPageAnime(pageFirst);
 });

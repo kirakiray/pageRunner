@@ -30,7 +30,8 @@
         let tarFrame = document.querySelector('iframe');
 
         tarFrame.contentWindow.postMessage(JSON.parse(JSON.stringify({
-            type: "pptModeCommond"
+            type: "pptModeCommond",
+            rid: 5
         })));
     }, 2000);
 </script>
