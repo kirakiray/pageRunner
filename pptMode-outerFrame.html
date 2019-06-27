@@ -23,16 +23,16 @@
 </head>
 
 <body>
-    <iframe src="index.html" frameborder="0"></iframe>
+    <iframe src="index.html?active=1" frameborder="0"></iframe>
 </body>
 <script>
     setTimeout(() => {
         let tarFrame = document.querySelector('iframe');
 
-        tarFrame.contentWindow.postMessage(JSON.parse(JSON.stringify({
-            type: "pptModeCommond",
-            rid: 5
-        })));
+        // tarFrame.contentWindow.postMessage(JSON.parse(JSON.stringify({
+        //     type: "pptModeCommond",
+        //     rid: 5
+        // })));
     }, 2000);
 </script>
 

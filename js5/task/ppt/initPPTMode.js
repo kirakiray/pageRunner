@@ -6,7 +6,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
 drill.task(function () {
     var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(load, data) {
-        var initActiveId, _ref2, _ref3, commonData, animationCSSUtil, pageUtil, rData, h5Util, mainEle, pageFirst, pageData, sarr, arrId, runAnime;
+        var initActiveId, _ref2, _ref3, commonData, animationCSSUtil, pageUtil, rData, h5Util, mainEle, pageFirst, pageData, arrId, sarr, runAnime;
 
         return regeneratorRuntime.wrap(function _callee2$(_context2) {
             while (1) {
@@ -52,7 +52,11 @@ drill.task(function () {
                         // await pageData.startLoad();
                         pageData.startLoad();
 
+                        // 计算的进行id
+                        arrId = 0;
+
                         // 所有元素的进场序列
+
                         sarr = [];
 
                         // 添加相应的active
@@ -67,6 +71,11 @@ drill.task(function () {
                             }
 
                             var pageData = e.pageData;
+
+                            // 设置arrId
+                            if (initActiveId === pageId) {
+                                arrId = sarr.length;
+                            }
 
                             // 添加队列
                             sarr.push({
@@ -117,10 +126,6 @@ drill.task(function () {
                         });
 
                         console.log(sarr, commonData);
-
-                        // 计算的进行id
-                        arrId = 0;
-
 
                         mainEle.on("click", function (e) {
                             runAnime();

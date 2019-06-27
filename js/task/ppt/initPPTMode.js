@@ -26,6 +26,9 @@ drill.task(async (load, data) => {
     // await pageData.startLoad();
     pageData.startLoad();
 
+    // 计算的进行id
+    let arrId = 0;
+
     // 所有元素的进场序列
     let sarr = [];
 
@@ -40,6 +43,11 @@ drill.task(async (load, data) => {
         }
 
         let pageData = e.pageData;
+
+        // 设置arrId
+        if (initActiveId === pageId) {
+            arrId = sarr.length;
+        }
 
         // 添加队列
         sarr.push({
@@ -90,9 +98,6 @@ drill.task(async (load, data) => {
     });
 
     console.log(sarr, commonData);
-
-    // 计算的进行id
-    let arrId = 0;
 
     mainEle.on("click", e => {
         runAnime();
