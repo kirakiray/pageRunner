@@ -26,14 +26,20 @@
     <iframe src="index.html?active=1" frameborder="0"></iframe>
 </body>
 <script>
+    let tarFrame = document.querySelector('iframe');
     setTimeout(() => {
-        let tarFrame = document.querySelector('iframe');
-
-        // tarFrame.contentWindow.postMessage(JSON.parse(JSON.stringify({
-        //     type: "pptModeCommond",
-        //     rid: 5
-        // })));
+        tarFrame.contentWindow.postMessage({
+            type: "pptModeCommond",
+            rid: 5
+        });
     }, 2000);
+
+    window.addEventListener("message", e => {
+        if (e.origin == location.origin) {
+            let data = e.data;
+            console.log(data);
+        }
+    });
 </script>
 
 </html>

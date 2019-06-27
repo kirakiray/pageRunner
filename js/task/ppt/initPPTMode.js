@@ -97,6 +97,14 @@ drill.task(async (load, data) => {
         });
     });
 
+    let parentWin = top;
+
+    // 初始一下
+    parentWin.postMessage({
+        type: "pptModeBack",
+        cid: arrId
+    })
+
     console.log(sarr, commonData);
 
     mainEle.on("click", e => {
@@ -130,6 +138,11 @@ drill.task(async (load, data) => {
             console.log('最后一页了');
         }
 
+        parentWin.postMessage({
+            type: "pptModeBack",
+            cid: arrId
+        })
+
         console.log("arrId => ", arrId);
     }
 
@@ -138,42 +151,46 @@ drill.task(async (load, data) => {
             data
         } = e;
 
-        if (data.type === "pptModeCommond") {
-            let {
-                rid
-            } = data;
+        console.log(e);
 
-            let tarPageId = rid;
+        switch (data.type) {
+            // case "pptModeInit":
+            //     debugger
+            //     break;
+            case "pptModeCommond":
+                let {
+                    rid
+                } = data;
 
-            // 判断是否page元素，不是的话就向前溯源，找到page并切换到page，在加载到当前的元素
-            let tarData = sarr[rid];
+                let tarPageId = rid;
 
-            while (tarData.type !== "page") {
-                tarData = sarr[--tarPageId];
-            }
+                // 判断是否page元素，不是的话就向前溯源，找到page并切换到page，在加载到当前的元素
+                let tarData = sarr[rid];
 
-            // 进行缓存
-            await tarData.data.startLoad();
+                while (tarData.type !== "page") {
+                    tarData = sarr[--tarPageId];
+                }
 
-            // let startPageId = sarr.indexOf(tarData);
+                // 进行缓存
+                await tarData.data.startLoad();
 
-            // 向前跳，并进行nextPage
-            arrId = rid - 1;
-            runAnime();
+                // let startPageId = sarr.indexOf(tarData);
 
-            tarPageId++;
-            // 进行到相应位置
-            for (; tarPageId < rid; tarPageId++) {
-                sarr[tarPageId].arr.forEach(e => {
-                    pageUtil.runEleAnime($(`[outer-id="${e.data.outerId}"] .p_ele`), e.data, {
-                        noDelay: 1,
-                        noAnime: true
+                // 向前跳，并进行nextPage
+                arrId = rid - 1;
+                runAnime();
+
+                tarPageId++;
+                // 进行到相应位置
+                for (; tarPageId < rid; tarPageId++) {
+                    sarr[tarPageId].arr.forEach(e => {
+                        pageUtil.runEleAnime($(`[outer-id="${e.data.outerId}"] .p_ele`), e.data, {
+                            noDelay: 1,
+                            noAnime: true
+                        });
                     });
-                });
-            }
-
-            // arrId = data.rid;
-            console.log(data);
+                }
+                break;
         }
     });
 

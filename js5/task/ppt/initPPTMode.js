@@ -6,7 +6,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
 drill.task(function () {
     var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(load, data) {
-        var initActiveId, _ref2, _ref3, commonData, animationCSSUtil, pageUtil, rData, h5Util, mainEle, pageFirst, pageData, arrId, sarr, runAnime;
+        var initActiveId, _ref2, _ref3, commonData, animationCSSUtil, pageUtil, rData, h5Util, mainEle, pageFirst, pageData, arrId, sarr, parentWin, runAnime;
 
         return regeneratorRuntime.wrap(function _callee2$(_context2) {
             while (1) {
@@ -125,6 +125,15 @@ drill.task(function () {
                             });
                         });
 
+                        parentWin = top;
+
+                        // 初始一下
+
+                        parentWin.postMessage({
+                            type: "pptModeBack",
+                            cid: arrId
+                        });
+
                         console.log(sarr, commonData);
 
                         mainEle.on("click", function (e) {
@@ -160,6 +169,11 @@ drill.task(function () {
                                 console.log('最后一页了');
                             }
 
+                            parentWin.postMessage({
+                                type: "pptModeBack",
+                                cid: arrId
+                            });
+
                             console.log("arrId => ", arrId);
                         };
 
@@ -172,11 +186,14 @@ drill.task(function () {
                                             case 0:
                                                 data = e.data;
 
-                                                if (!(data.type === "pptModeCommond")) {
-                                                    _context.next = 13;
-                                                    break;
-                                                }
 
+                                                console.log(e);
+
+                                                _context.t0 = data.type;
+                                                _context.next = _context.t0 === "pptModeCommond" ? 5 : 16;
+                                                break;
+
+                                            case 5:
                                                 rid = data.rid;
                                                 tarPageId = rid;
 
@@ -190,10 +207,10 @@ drill.task(function () {
                                                 }
 
                                                 // 进行缓存
-                                                _context.next = 8;
+                                                _context.next = 11;
                                                 return tarData.data.startLoad();
 
-                                            case 8:
+                                            case 11:
 
                                                 // let startPageId = sarr.indexOf(tarData);
 
@@ -211,11 +228,9 @@ drill.task(function () {
                                                         });
                                                     });
                                                 }
+                                                return _context.abrupt("break", 16);
 
-                                                // arrId = data.rid;
-                                                console.log(data);
-
-                                            case 13:
+                                            case 16:
                                             case "end":
                                                 return _context.stop();
                                         }
@@ -236,7 +251,7 @@ drill.task(function () {
 
                         // pageUtil.runPageAnime(pageFirst);
 
-                    case 26:
+                    case 28:
                     case "end":
                         return _context2.stop();
                 }
