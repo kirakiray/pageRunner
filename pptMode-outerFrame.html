@@ -30,9 +30,15 @@
     setTimeout(() => {
         tarFrame.contentWindow.postMessage({
             type: "pptModeCommond",
-            rid: 5
+            rid: 6
         });
     }, 2000);
+    setTimeout(() => {
+        tarFrame.contentWindow.postMessage({
+            type: "pptModeCommond",
+            rid: 6
+        });
+    }, 3000);
 
     window.addEventListener("message", e => {
         if (e.origin == location.origin) {

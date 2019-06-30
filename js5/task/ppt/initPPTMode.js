@@ -130,8 +130,9 @@ drill.task(function () {
                         // 初始一下
 
                         parentWin.postMessage({
-                            type: "pptModeBack",
-                            cid: arrId
+                            type: "initpptModeBack",
+                            cid: arrId,
+                            count: sarr.length
                         });
 
                         console.log(sarr, commonData);
@@ -171,7 +172,8 @@ drill.task(function () {
 
                             parentWin.postMessage({
                                 type: "pptModeBack",
-                                cid: arrId
+                                cid: arrId,
+                                count: sarr.length
                             });
 
                             console.log("arrId => ", arrId);
@@ -190,11 +192,20 @@ drill.task(function () {
                                                 console.log(e);
 
                                                 _context.t0 = data.type;
-                                                _context.next = _context.t0 === "pptModeCommond" ? 5 : 16;
+                                                _context.next = _context.t0 === "pptModeCommond" ? 5 : 18;
                                                 break;
 
                                             case 5:
                                                 rid = data.rid;
+
+                                                if (!(rid === arrId)) {
+                                                    _context.next = 8;
+                                                    break;
+                                                }
+
+                                                return _context.abrupt("return");
+
+                                            case 8:
                                                 tarPageId = rid;
 
                                                 // 判断是否page元素，不是的话就向前溯源，找到page并切换到page，在加载到当前的元素
@@ -206,11 +217,11 @@ drill.task(function () {
                                                     tarData = sarr[--tarPageId];
                                                 }
 
-                                                // 进行缓存
-                                                _context.next = 11;
+                                                // 进行页面缓存
+                                                _context.next = 13;
                                                 return tarData.data.startLoad();
 
-                                            case 11:
+                                            case 13:
 
                                                 // let startPageId = sarr.indexOf(tarData);
 
@@ -228,9 +239,9 @@ drill.task(function () {
                                                         });
                                                     });
                                                 }
-                                                return _context.abrupt("break", 16);
+                                                return _context.abrupt("break", 18);
 
-                                            case 16:
+                                            case 18:
                                             case "end":
                                                 return _context.stop();
                                         }

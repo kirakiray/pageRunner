@@ -101,8 +101,9 @@ drill.task(async (load, data) => {
 
     // 初始一下
     parentWin.postMessage({
-        type: "pptModeBack",
-        cid: arrId
+        type: "initpptModeBack",
+        cid: arrId,
+        count: sarr.length
     })
 
     console.log(sarr, commonData);
@@ -140,7 +141,8 @@ drill.task(async (load, data) => {
 
         parentWin.postMessage({
             type: "pptModeBack",
-            cid: arrId
+            cid: arrId,
+            count: sarr.length
         })
 
         console.log("arrId => ", arrId);
@@ -162,6 +164,10 @@ drill.task(async (load, data) => {
                     rid
                 } = data;
 
+                if (rid === arrId) {
+                    return;
+                }
+
                 let tarPageId = rid;
 
                 // 判断是否page元素，不是的话就向前溯源，找到page并切换到page，在加载到当前的元素
@@ -171,7 +177,7 @@ drill.task(async (load, data) => {
                     tarData = sarr[--tarPageId];
                 }
 
-                // 进行缓存
+                // 进行页面缓存
                 await tarData.data.startLoad();
 
                 // let startPageId = sarr.indexOf(tarData);
