@@ -99,13 +99,6 @@ drill.task(async (load, data) => {
 
     let parentWin = top;
 
-    // 初始一下
-    parentWin.postMessage({
-        type: "initpptModeBack",
-        cid: arrId,
-        count: sarr.length
-    })
-
     console.log(sarr, commonData);
 
     mainEle.on("click", e => {
@@ -135,15 +128,17 @@ drill.task(async (load, data) => {
                     h5Util.toPage($(tarObj.ele).index());
                     break;
             }
+
+            parentWin.postMessage({
+                type: "pptModeBack",
+                cid: arrId,
+                count: sarr.length
+            }, "*")
         } else {
             console.log('最后一页了');
-        }
 
-        parentWin.postMessage({
-            type: "pptModeBack",
-            cid: arrId,
-            count: sarr.length
-        })
+            return;
+        }
 
         console.log("arrId => ", arrId);
     }
@@ -156,9 +151,6 @@ drill.task(async (load, data) => {
         console.log(e);
 
         switch (data.type) {
-            // case "pptModeInit":
-            //     debugger
-            //     break;
             case "pptModeCommond":
                 let {
                     rid

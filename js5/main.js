@@ -128,6 +128,21 @@ _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
                     });
 
                 case 39:
+
+                    if (top !== window) {
+                        top.postMessage({
+                            type: "initBack"
+                        }, "*");
+                    }
+
+                    // commonData.on("changePageStart", (e, data) => {
+                    //     console.log("changePageStart => ", data);
+                    // });
+                    // commonData.on("changePageEnd", (e, data) => {
+                    //     console.log("changePageEnd => ", data);
+                    // });
+
+                case 40:
                 case "end":
                     return _context.stop();
             }

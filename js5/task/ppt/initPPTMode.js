@@ -127,13 +127,6 @@ drill.task(function () {
 
                         parentWin = top;
 
-                        // 初始一下
-
-                        parentWin.postMessage({
-                            type: "initpptModeBack",
-                            cid: arrId,
-                            count: sarr.length
-                        });
 
                         console.log(sarr, commonData);
 
@@ -166,15 +159,17 @@ drill.task(function () {
                                         h5Util.toPage($(tarObj.ele).index());
                                         break;
                                 }
+
+                                parentWin.postMessage({
+                                    type: "pptModeBack",
+                                    cid: arrId,
+                                    count: sarr.length
+                                }, "*");
                             } else {
                                 console.log('最后一页了');
-                            }
 
-                            parentWin.postMessage({
-                                type: "pptModeBack",
-                                cid: arrId,
-                                count: sarr.length
-                            });
+                                return;
+                            }
 
                             console.log("arrId => ", arrId);
                         };
@@ -262,7 +257,7 @@ drill.task(function () {
 
                         // pageUtil.runPageAnime(pageFirst);
 
-                    case 28:
+                    case 27:
                     case "end":
                         return _context2.stop();
                 }

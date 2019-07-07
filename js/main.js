@@ -83,6 +83,12 @@
             });
     }
 
+    if (top !== window) {
+        top.postMessage({
+            type: "initBack"
+        }, "*");
+    }
+
     // commonData.on("changePageStart", (e, data) => {
     //     console.log("changePageStart => ", data);
     // });
